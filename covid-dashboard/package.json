@@ -7,7 +7,7 @@
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "lint": "eslint ./src",
-    "fix": "eslint ./src --fix",
+    "lint:fix": "eslint ./src --fix",
     "watch": "webpack --mode development --watch",
     "dev-server": "webpack-dev-server --mode development --open"
   },
