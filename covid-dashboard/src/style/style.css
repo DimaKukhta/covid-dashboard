@@ -58,3 +58,40 @@ main {
 .chart {
   flex-grow: 2;
 }
+
+/* FOOTER */
+footer {
+  background: var(--color-bg-block);
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 50px;
+  justify-content: center;
+}
+
+.footer {
+  min-width: 44vw;
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-text-white);
+}
+
+.footer-link:hover {
+  opacity: 0.7;
+}
+
+.footer-image {
+  height: 15px;
+  margin: 4px;
+}
