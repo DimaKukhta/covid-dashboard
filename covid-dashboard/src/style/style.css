@@ -1,3 +1,18 @@
 * {
-  background: yellow;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-bg-main);
+}
+
+.block {
+  margin: 0.3rem;
+  border: solid 1px var(--color-text-white);
+  background: var(--color-bg-block);
 }
