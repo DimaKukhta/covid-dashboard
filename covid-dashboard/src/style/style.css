@@ -16,3 +16,15 @@ body {
   border: solid 1px var(--color-text-white);
   background: var(--color-bg-block);
 }
+
+/* HEADER */
+header {
+  flex: 0 0 auto;
+}
+
+h1 {
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 400;
+}
