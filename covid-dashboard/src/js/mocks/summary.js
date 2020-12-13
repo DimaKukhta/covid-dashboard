@@ -2536,4 +2536,4 @@ const summary = {
 };
 
 
-export default JSON.stringify(summary);
+export default summary;

@@ -1257,4 +1257,4 @@
     }
 ];
 
-export default JSON.stringify(flagsPopulation);
+export default flagsPopulation;
