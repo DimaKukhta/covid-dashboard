@@ -31,17 +31,6 @@ module.exports = {
                 use: ['style-loader', 'css-loader']
             },
             {
-            test: /.(ogg|mp3|wav|mpe?g)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'assets/./assets/[hash][query].[ext]',
-                    },
-                },
-                ],
-            },
-            {
                 test: /\.(png|jpg|svg|gif)$/,
                 use: ['file-loader']
             }
