@@ -14,6 +14,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
+        contentBase: path.resolve(__dirname, './dist'),
+        open: true,
         port: 4200
     },
     plugins: [
@@ -27,17 +29,6 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
-            },
-            {
-            test: /.(ogg|mp3|wav|mpe?g)$/,
-            use: [
-                {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'assets/./assets/[hash][query].[ext]',
-                    },
-                },
-                ],
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,

@@ -9,7 +9,7 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "watch": "webpack --mode development --watch",
-    "dev-server": "webpack-dev-server --mode development --open"
+    "dev-server": "webpack serve --mode development"
   },
   "author": "Dima Kukhta, Volha Khviadchenia, Viktar Sakharuk, Artem Osadchuck",
   "license": "ISC",
