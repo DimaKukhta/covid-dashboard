@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
-    mode: 'development',
+    mode: 'development',    
     entry: {
         main: './index.js', 
     },
@@ -23,6 +23,13 @@ module.exports = {
             template: './index.html'
         }),
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin(
+            { 
+                patterns: [
+                    { from: './assets/', to: 'assets/'},
+                ]
+            }
+        )
     ],
     module: {
         rules: [ 
