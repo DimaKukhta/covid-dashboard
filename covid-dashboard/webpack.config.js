@@ -23,17 +23,12 @@ module.exports = {
       template: './index.html',
     }),
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin(
+      {
+        patterns: [
+          { from: './assets/', to: 'assets/' },
+        ],
+      },
+    ),
   ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
-      },
-    ],
-  },
 };
