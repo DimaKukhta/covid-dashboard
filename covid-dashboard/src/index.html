@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="./style/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
@@ -27,17 +26,17 @@
             <p>
               <input type = "radio"
               name = "period"
-              id = "todayCases"
-              value = "todayCases"
+              id = "totalCases"
+              value = "totalCases"
               checked = "checked" />
-       <label for = "todayCases">today`s cases</label>
+       <label for = "totalCases">total cases</label>
             </p>
             <p>
               <input type = "radio"
               name = "period"
-              id = "totalCases"
-              value = "totalCases" />
-       <label for = "totalCases">total cases</label>
+              id = "todayCases"
+              value = "todayCases"/>
+       <label for = "todayCases">today`s cases</label>
             </p>
           </div> 
           <div>
@@ -59,9 +58,9 @@
           </div>  
         </div>
         <div class="buttons">
-          <div class="button button-disease"></div>
-          <div class="button button-death"></div>
-          <div class="button button-recovery button-active"></div>
+          <div class="button button-disease button-active" title="disease people"></div>
+          <div class="button button-death" title="death people"></div>
+          <div class="button button-recovery" title="recovery people"></div>
         </div>
         <div class="container-updated-date">
           <p>Last Updated at (D.M.YYYY)</p>
