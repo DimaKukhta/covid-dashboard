@@ -17,6 +17,57 @@
       <div class="header block">
         <h1>COVID-19 Dashboard</h1>
       </div>
+      <div class="navigation">
+        <div class="container-total-amount">
+          <p>Global Cases</p>
+          <p class="total-amount" id="totalAmount">00 000 000</p>
+        </div>
+        <div class="container-for-radiobuttons">
+          <div>
+            <p>
+              <input type = "radio"
+              name = "period"
+              id = "todayCases"
+              value = "todayCases"
+              checked = "checked" />
+       <label for = "todayCases">today`s cases</label>
+            </p>
+            <p>
+              <input type = "radio"
+              name = "period"
+              id = "totalCases"
+              value = "totalCases" />
+       <label for = "totalCases">total cases</label>
+            </p>
+          </div> 
+          <div>
+            <p>
+              <input type = "radio"
+              name = "numbers"
+              id = "inAbsoluteNumbers"
+              value = "inAbsoluteNumbers"
+              checked = "checked" />
+              <label for = "inAbsoluteNumbers">in absolute numbers</label>
+            </p>
+            <p>
+              <input type = "radio"
+              name = "numbers"
+              id = "per100ThousandPeople"
+              value = "per100ThousandPeople" />
+       <label for = "per100ThousandPeople">per 100`000 people</label>
+            </p>
+          </div>  
+        </div>
+        <div class="buttons">
+          <div class="button button-disease"></div>
+          <div class="button button-death"></div>
+          <div class="button button-recovery active"></div>
+        </div>
+        <div class="container-updated-date">
+          <p>Last Updated at (D.M.YYYY)</p>
+          <p class="updated-date" id="updatedDate">00.00.2020</p>
+        </div>
+      </div>
     </header>
     <main>
       <div id="list" class="list block"></div>

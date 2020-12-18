@@ -47,6 +47,70 @@ h1 {
   font-weight: 400;
 }
 
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.7rem 1.5rem;
+}
+
+.container-for-radiobuttons {
+  display: flex;
+  justify-content: space-between;
+  width: 27vw;
+}
+
+input:checked ~ label {
+  color: var(--color-highlight-white);
+}
+
+.buttons {
+  display: flex;
+  width: 12vw;
+  justify-content: space-between;
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--color-text-red);
+}
+
+.button-disease {
+  background-image: url(../assets/button-disease.svg);
+
+}
+
+.button-death {
+  background-image: url(../assets/button-death.svg);
+}
+
+.button-recovery {
+  background-image: url(../assets/button-recovery.svg);
+}
+
+.container-total-amount {
+  display: inline;
+  color: var(--color-highlight-white);
+  text-align: center;
+}
+
+.total-amount {
+  color: var(--color-text-red);
+  font-size: 2rem;
+}
+
+.container-updated-date {
+  text-align: center;
+}
+
+.updated-date {
+  font-size: 1.5rem;
+  color: var(--color-highlight-white);
+}
+
 /* MAIN */
 main {
   background: var(--color-bg-main);
