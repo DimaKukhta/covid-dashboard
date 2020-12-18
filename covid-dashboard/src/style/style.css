@@ -57,7 +57,7 @@ h1 {
 .container-for-radiobuttons {
   display: flex;
   justify-content: space-between;
-  width: 27vw;
+  width: 22vw;
 }
 
 input:checked ~ label {
@@ -66,7 +66,7 @@ input:checked ~ label {
 
 .buttons {
   display: flex;
-  width: 12vw;
+  width: 10vw;
   justify-content: space-between;
 }
 
@@ -75,12 +75,13 @@ input:checked ~ label {
   height: 35px;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: var(--color-text-red);
+  background-color: var(--color-text-white);
+  opacity: 0.4;
+  border: 1px solid var(--color-text-red);
 }
 
 .button-disease {
   background-image: url(../assets/button-disease.svg);
-
 }
 
 .button-death {
@@ -89,6 +90,12 @@ input:checked ~ label {
 
 .button-recovery {
   background-image: url(../assets/button-recovery.svg);
+}
+
+.button-active {
+  opacity: 1;
+  width: 40px;
+  height: 40px;
 }
 
 .container-total-amount {
