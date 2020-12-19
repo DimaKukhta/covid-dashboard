@@ -1,6 +1,8 @@
 import './style/style.css';
-import Data from './js/getApiData';
 import Table from './js/table';
 
-const table = new Table();
+const table = new Table('Global');
 table.renderIn(document.querySelector('#table'));
+document.querySelector('button').addEventListener('click', () => {
+  table.updateTableInfo('Belarus');
+});

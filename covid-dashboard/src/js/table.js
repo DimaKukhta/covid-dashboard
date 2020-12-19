@@ -1,39 +1,37 @@
 import createElement from './utils/createElement';
-import Data from './getApiData';
+import { getCountriesAndGlobalInfo } from './getApiData';
 
 export default class Table {
-  constructor() {
+  constructor(country) {
     this.createTable();
+    this.updateTableInfo(country);
   }
 
   createTable() {
     this.table = createElement('table', 'table-info');
     this.tbody = createElement('tbody', null, null, this.table);
-    this.thead = createElement('th', 'table-info--country', 'Global', null, ['colspan', '2']);
+    this.thead = createElement('th', 'table-info--country', null, null, ['colspan', '2']);
     this.tableHead = createElement('tr', null, this.thead, this.tbody);
 
     this.casesText = createElement('td', 'table-info-cases--text', 'Cases');
-    this.casesValue = createElement('td', 'table-info-cases--value', 'aaaaaaaa');
+    this.casesValue = createElement('td', 'table-info-cases--value');
     this.casesRow = createElement('tr', 'table-info-cases', [this.casesText, this.casesValue], this.tbody);
 
     this.deathText = createElement('td', 'table-info-deaths--text', 'Deaths');
-    this.deathValue = createElement('td', 'table-info-deaths--value', 'aaaassssssssaaaa');
-    this.deathsRow = createElement('tr', 'table-info-deaths', [this.deathText, this.deathValue], this.tbody);
+    this.deathsValue = createElement('td', 'table-info-deaths--value');
+    this.deathsRow = createElement('tr', 'table-info-deaths', [this.deathText, this.deathsValue], this.tbody);
 
     this.recoveredText = createElement('td', 'table-info-recoveded--text', 'Recovered');
-    this.recoveredValue = createElement('td', 'table-info-recoveded--value', 'aaaassssssssaaaa');
+    this.recoveredValue = createElement('td', 'table-info-recoveded--value');
     this.recoveredRow = createElement('tr', 'table-info-recovered', [this.recoveredText, this.recoveredValue], this.tbody);
-
-    // not document. should import header component???
-    document.addEventListener('click', this.updateTableInfo);
   }
 
-  updateTableInfo() {
-    Data.getCountriesAndGlobalInfo().then(({ country, cases, deaths, recovered }) => {
+  updateTableInfo(country) {
+    getCountriesAndGlobalInfo().then((summary) => {
       this.thead.textContent = country;
-      this.casesValue.textContent = cases;
-      this.deathsValue.textContent = deaths;
-      this.recoveredValue.textContent = recovered;
+      this.casesValue.textContent = summary[country].cases;
+      this.deathsValue.textContent = summary[country].deaths;
+      this.recoveredValue.textContent = summary[country].recovered;
     });
   }
 
