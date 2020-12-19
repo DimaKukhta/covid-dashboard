@@ -1,43 +1,51 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import covidPopulationFlagMock from '../mocks/covidPopulationFlagMock';
+
 export default class Map {
   constructor() {
-    this.addHeadLinks();
     this.mapParser();
-  }
-
-  addHeadLinks() {
-    this.styleMap = document.createElement('link');
-    this.jsMap = document.createElement('script');
-    this.fragment = document.createDocumentFragment();
-
-    this.styleMap.rel = 'stylesheet';
-    this.styleMap.href = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
-    this.styleMap.integrity = 'sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==';
-    this.styleMap.crossOrigin = '';
-
-    this.jsMap.src = 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.js';
-    this.jsMap.integrity = 'sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==';
-    this.jsMap.crossOrigin = '';
-
-    this.fragment.append(...[this.styleMap, this.jsMap]);
-    document.head.prepend(this.fragment);
+    this.circleParser();
   }
 
   mapParser() {
     this.mapPaint = () => {
-      // eslint-disable-next-line no-undef
-      const mymap = L.map('map').setView([51.505, -0.09], 1);
+      this.mymap = L.map('map').setView([51.505, -0.09], 1);
       // eslint-disable-next-line no-undef
       L.tileLayer('https://api.mapbox.com/styles/v1/artemosd/ckiqepyj912kl17oi3raexvbn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYXJ0ZW1vc2QiLCJhIjoiY2tpcTdieWdxMXRyazJ5cWo5OG0zenhzcCJ9.N-aBN7weDatXK0LtA_7Flw', {
         maxZoom: 11,
         minZoom: 2.5,
         id: 'mapbox/ckiqepyj912kl17oi3raexvbn',
-
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoiYXJ0ZW1vc2QiLCJhIjoiY2tpcTdieWdxMXRyazJ5cWo5OG0zenhzcCJ9.N-aBN7weDatXK0LtA_7Flw',
-      }).addTo(mymap);
+      }).addTo(this.mymap);
     };
     setTimeout(this.mapPaint, 250);
+  }
+
+  circleParser() {
+    Object.entries(covidPopulationFlagMock).forEach(([, value]) => {
+      const { lat } = value;
+      const lon = value.long;
+      if (!lat || !lon) {
+        return;
+      }
+
+      this.circlePaint = () => {
+        this.circle = L.circle([lat, lon], {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: 500,
+          bubblingMouseEvents: true,
+        }).addTo(this.mymap);
+
+        this.circle.bindPopup('I am a circle.');
+      };
+      setTimeout(this.circlePaint, 1200);
+    });
   }
 }
 
