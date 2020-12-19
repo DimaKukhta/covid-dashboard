@@ -43,6 +43,7 @@ export default class Map {
         }).addTo(this.mymap);
 
         this.circle.bindPopup('I am a circle.');
+        // console.log(lat);
       };
       setTimeout(this.circlePaint, 1200);
     });
