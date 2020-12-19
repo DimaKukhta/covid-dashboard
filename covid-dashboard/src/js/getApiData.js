@@ -29,6 +29,8 @@ async function getCountriesData() {
     // eslint-disable-next-line no-param-reassign
     accum[country] = {
       flag: countryInfo.flag,
+      lat: countryInfo.lat,
+      long: countryInfo.long,
       cases,
       todayCases,
       deaths,
