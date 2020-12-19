@@ -28,13 +28,13 @@ export default class Map {
   circleParser() {
     Object.entries(covidPopulationFlagMock).forEach(([, value]) => {
       const { lat } = value;
-      const lon = value.long;
-      if (!lat || !lon) {
+      const { long } = value;
+      if (!lat || !long) {
         return;
       }
 
       this.circlePaint = () => {
-        this.circle = L.circle([lat, lon], {
+        this.circle = L.circle([lat, long], {
           color: 'red',
           fillColor: '#f03',
           fillOpacity: 0.5,
@@ -43,7 +43,6 @@ export default class Map {
         }).addTo(this.mymap);
 
         this.circle.bindPopup('I am a circle.');
-        // console.log(lat);
       };
       setTimeout(this.circlePaint, 1200);
     });
