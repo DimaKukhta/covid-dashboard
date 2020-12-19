@@ -16,12 +16,12 @@
       <div class="header block">
         <h1>COVID-19 Dashboard</h1>
       </div>
-      <div class="navigation">
+      <div class="filters">
         <div class="container-total-amount">
           <p>Global Cases</p>
           <p class="total-amount" id="totalAmount">00 000 000</p>
         </div>
-        <div class="container-for-radiobuttons">
+        <div class="container-for-radio">
           <div>
             <p>
               <input type = "radio"
@@ -29,7 +29,7 @@
               id = "totalCases"
               value = "totalCases"
               checked = "checked" />
-       <label for = "totalCases">total cases</label>
+              <label for = "totalCases">total cases</label>
             </p>
             <p>
               <input type = "radio"
@@ -56,12 +56,13 @@
        <label for = "per100ThousandPeople">per 100`000 people</label>
             </p>
           </div>  
+        
+        <div class="button-filters">
+          <div class="button button-active">cases</div>
+          <div class="button ">deaths</div>
+          <div class="button ">recovered</div>
         </div>
-        <div class="buttons">
-          <div class="button button-disease button-active" title="disease people"></div>
-          <div class="button button-death" title="death people"></div>
-          <div class="button button-recovery" title="recovery people"></div>
-        </div>
+      </div>
         <div class="container-updated-date">
           <p>Last Updated at (D.M.YYYY)</p>
           <p class="updated-date" id="updatedDate">00.00.2020</p>
