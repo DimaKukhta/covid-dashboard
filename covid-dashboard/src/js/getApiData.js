@@ -3,16 +3,16 @@ const urlCovidBase = 'https://disease.sh/v3/covid-19';
 
 async function fetchCountriesData() {
   const urlCountries = `${urlCovidBase}/countries`;
-  return fetch(urlCountries);
+  return fetch(urlCountries).then((result) => result.json());
 }
 
 async function fetchGlobalData() {
   const urlGlobal = `${urlCovidBase}/all`;
-  return fetch(urlGlobal);
+  return fetch(urlGlobal).then((result) => result.json());
 }
 
 async function getCountriesData() {
-  const responseCountries = await fetchCountriesData().then((result) => result.json());
+  const responseCountries = await fetchCountriesData();
 
   return responseCountries.reduce((accum, {
     country,
@@ -45,7 +45,7 @@ async function getCountriesData() {
 }
 
 async function getGlobalData() {
-  const responseGlobal = await fetchGlobalData().then((result) => result.json());
+  const responseGlobal = await fetchGlobalData();
 
   const {
     cases,
@@ -86,16 +86,16 @@ async function getCountriesAndGlobalInfo() {
 
 async function fetchHistoricCountryInfo(country) {
   const url = `${urlCovidBase}/historical/${country}?lastdays=1000`;
-  return fetch(url);
+  return fetch(url).then((result) => result.json());
 }
 
 async function fetchHistoricGlobalInfo() {
   const url = `${urlCovidBase}/historical/all?lastdays=1000`;
-  return fetch(url);
+  return fetch(url).then((result) => result.json());
 }
 
 async function getHistoricCountryInfo(country) {
-  const response = await fetchHistoricCountryInfo(country).then((result) => result.json());
+  const response = await fetchHistoricCountryInfo(country);
   const { cases, deaths, recovered } = response.timeline;
   const countryHistoricInfo = { cases, deaths, recovered };
   // just for control
@@ -104,7 +104,7 @@ async function getHistoricCountryInfo(country) {
 }
 
 async function getHistoricGlobalInfo() {
-  const response = await fetchHistoricGlobalInfo().then((result) => result.json());
+  const response = await fetchHistoricGlobalInfo();
   const { cases, deaths, recovered } = response;
   const globalHistoricInfo = { cases, deaths, recovered };
   // just for control
