@@ -1,12 +1,20 @@
 // for table, list with flags
-async function getCountriesAndGlobalInfo() {
-  const urlCountries = 'https://disease.sh/v3/covid-19/countries';
-  const urlGlobal = 'https://disease.sh/v3/covid-19/all';
-  const responseCountries = await fetch(urlCountries);
-  const responseGlobal = await fetch(urlGlobal);
-  const countryList = await responseCountries.json();
-  const global = await responseGlobal.json();
-  const countriesInfo = countryList.reduce((accum, {
+const urlCovidBase = 'https://disease.sh/v3/covid-19';
+
+async function fetchCountriesData() {
+  const urlCountries = `${urlCovidBase}/countries`;
+  return fetch(urlCountries);
+}
+
+async function fetchGlobalData() {
+  const urlGlobal = `${urlCovidBase}/all`;
+  return fetch(urlGlobal);
+}
+
+async function getCountriesData() {
+  const responseCountries = await fetchCountriesData().then((result) => result.json());
+
+  return responseCountries.reduce((accum, {
     country,
     countryInfo,
     cases,
@@ -32,6 +40,11 @@ async function getCountriesAndGlobalInfo() {
     };
     return accum;
   }, {});
+}
+
+async function getGlobalData() {
+  const responseGlobal = await fetchGlobalData().then((result) => result.json());
+
   const {
     cases,
     todayCases,
@@ -41,40 +54,69 @@ async function getCountriesAndGlobalInfo() {
     todayRecovered,
     population,
     updated,
-  } = global;
-  countriesInfo.Global = {
-    cases,
-    todayCases,
-    deaths,
-    todayDeaths,
-    recovered,
-    todayRecovered,
-    population,
-    updated,
+  } = responseGlobal;
+
+  return {
+    Global: {
+      cases,
+      todayCases,
+      deaths,
+      todayDeaths,
+      recovered,
+      todayRecovered,
+      population,
+      updated,
+    },
   };
-  console.log(JSON.stringify(countriesInfo, null, 2)); // just for control
-  return countriesInfo;
 }
-getCountriesAndGlobalInfo();
+
+async function getCountriesAndGlobalInfo() {
+  const countriesData = await getCountriesData();
+  const globalData = await getGlobalData();
+
+  const summaryData = Object.assign(countriesData, globalData);
+  // just for control
+  console.log(JSON.stringify(summaryData, null, 2));
+  return summaryData;
+}
 
 // for chart. Daily info
-async function getHistoricInfo(country) { // country or Global
-  if (country === 'Global') {
-    const url = 'https://disease.sh/v3/covid-19/historical/all?lastdays=1000';
-    const response = await fetch(url);
-    const countryStats = await response.json();
-    console.log(JSON.stringify(countryStats, null, 2));// just for control
-    return countryStats;
-  }
-  const url = `https://disease.sh/v3/covid-19/historical/${country}?lastdays=1000`;
-  const response = await fetch(url);
-  const countryStats = await response.json();
-  const { cases, deaths, recovered } = countryStats.timeline;
-  console.log(JSON.stringify({ cases, deaths, recovered }, null, 2)); // just for control
-  return { cases, deaths, recovered };
+
+async function fetchHistoricCountryInfo(country) {
+  const url = `${urlCovidBase}/historical/${country}?lastdays=1000`;
+  return fetch(url);
 }
-// getHistoricInfo('Global');
-// getHistoricInfo('Belarus');
+
+async function fetchHistoricGlobalInfo() {
+  const url = `${urlCovidBase}/historical/all?lastdays=1000`;
+  return fetch(url);
+}
+
+async function getHistoricCountryInfo(country) {
+  const response = await fetchHistoricCountryInfo(country).then((result) => result.json());
+  const { cases, deaths, recovered } = response.timeline;
+  const countryHistoricInfo = { cases, deaths, recovered };
+  // just for control
+  console.log(JSON.stringify(countryHistoricInfo, null, 2));
+  return countryHistoricInfo;
+}
+
+async function getHistoricGlobalInfo() {
+  const response = await fetchHistoricGlobalInfo().then((result) => result.json());
+  const { cases, deaths, recovered } = response;
+  const globalHistoricInfo = { cases, deaths, recovered };
+  // just for control
+  console.log(JSON.stringify(globalHistoricInfo, null, 2));
+  return globalHistoricInfo;
+}
+
+async function getHistoricInfo(country) {
+  if (country === 'Global') {
+    return getHistoricGlobalInfo();
+  }
+  return getHistoricCountryInfo(country);
+}
+
 export default {
   getCountriesAndGlobalInfo,
   getHistoricInfo,
