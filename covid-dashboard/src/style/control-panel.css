@@ -1,17 +1,25 @@
 @import './default.css';
 
-.filters {
+.control-panel {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 0.3rem 1.5rem;
 }
 
+/* filters */
 .container-for-radio {
-  display: flex;
+  display: flex;  
   align-items: center;
   justify-content: space-between;
   width: 32vw;
+}
+
+.radio-period,
+.radio-numbers {
+  padding: 5px;
+
+  border: 1px solid;  
 }
 
 input:hover ~label {
@@ -49,4 +57,27 @@ cursor: pointer;
   height: 2.5rem;
 
   opacity: 1;
+}
+
+/* cases and data */
+
+.container-total-amount {
+  display: inline;
+
+  color: var(--color-highlight-white);
+  text-align: center;
+}
+
+.total-amount {
+  color: var(--color-text-red);
+  font-size: 2rem;
+}
+
+.container-updated-date {
+  text-align: center;
+}
+
+.updated-date {
+  color: var(--color-highlight-white);
+  font-size: 1.5rem;
 }
