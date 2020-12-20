@@ -4,6 +4,11 @@ import createElement from '../utils/createElement';
 import data from '../gettersInfo';
 import { getCountriesAndGlobalInfo } from '../getApiData';
 
+function sortListBy(array, filter) {
+  // [1] need to sort list by country object
+  return array.sort((a, b) => b[1][filter] - a[1][filter]);
+}
+
 export default class List {
   constructor() {
     this.createList();
@@ -15,12 +20,23 @@ export default class List {
 
     this.list = createElement('ul', 'list-countries');
     getCountriesAndGlobalInfo().then((summary) => {
-      const countryList = Object.keys(summary);
-      console.log(countryList.length)
-      countryList.forEach((country) => {
-        this.listElem = createElement('li', 'list-countries--elem', country, this.list);
+      const sortedList = sortListBy(Object.entries(summary), 'cases');
+      sortedList.map(([country]) => {
+        const filter = summary[country].cases;
+        const casesElem = createElement('span', 'list-countries--filter', `${filter}`);
+        const countryElem = createElement('div', 'list-countries--country', country);
+        const flagSrc = (country === 'Global')
+          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
+          : summary[country].flag;
+        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
+        this.listElem = createElement('li', 'list-countries--elem', [casesElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
+        return this.listElem;
       });
     });
+  }
+
+  updateList() {
+
   }
 
   renderIn(element) {
