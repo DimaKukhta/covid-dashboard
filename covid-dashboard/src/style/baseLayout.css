@@ -53,7 +53,7 @@ main {
 }
 
 .table {
-  flex-grow: 3;
+  flex-grow: 0;
 }
 
 .chart {
