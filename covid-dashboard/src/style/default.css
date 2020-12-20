@@ -1,0 +1,25 @@
+:root {
+  --color-bg-main: #000000;
+  --color-bg-block: #222222;
+  --color-text-white: #d6d6d6;
+  --color-text-red: #e60000;
+  --color-text-green: #70a800;
+  --color-text-blue: #2493f2;
+  --color-text-lila: #886e9b;
+  --color-diagram: #ffaa00;
+  --color-highlight-blue: #1061a6;
+  --color-highlight-white: #ffffff;
+  height: 100%;
+
+  color: var(--color-text-white);
+  font-weight: 400;
+  font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+
+  user-select: none;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
