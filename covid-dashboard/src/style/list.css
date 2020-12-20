@@ -4,7 +4,7 @@
 .list {
   display: flex;
   flex-direction: column;
-  max-height: 750px;
+  max-height: 81vh;
   overflow-y: scroll;
 
   font-size: 0.9rem;
@@ -17,6 +17,12 @@
   margin-bottom: 5px;
   padding-left: 20px;
 }
+
+.list-countries--elem:hover {
+  background-color: var(--color-text-blue);
+  cursor: pointer;  
+}
+
 .list-countries--elem > :not(:first-child) {
   margin-left: 10px;
 }

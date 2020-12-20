@@ -1,4 +1,4 @@
-import { getCountriesAndGlobalInfo } from '../getApiData';
+import { getCountriesAndGlobalInfo } from '../api/getApiData';
 
 function fillControlPanelData() {
   const totalAmount = document.querySelector('#totalAmount');

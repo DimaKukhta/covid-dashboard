@@ -1,8 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
-import data from '../gettersInfo';
-import { getCountriesAndGlobalInfo } from '../getApiData';
+import { getCountriesAndGlobalInfo } from '../api/getApiData';
 
 function sortListBy(array, filter) {
   // [1] need to sort list by country object
@@ -17,6 +16,8 @@ export default class List {
   createList() {
     const parent = document.querySelector('.list');
     this.input = createElement('input', 'list-input', null, parent, ['type', 'text'], ['placeholder', 'Search country']);
+
+    this.input.addEventListener('input', this.searchCountry.bind(this));
 
     this.list = createElement('ul', 'list-countries');
     getCountriesAndGlobalInfo().then((summary) => {
@@ -35,8 +36,13 @@ export default class List {
     });
   }
 
-  updateList() {
-
+  searchCountry() {
+    const listArray = Array.from(this.list.children);
+    listArray.forEach((elem) => {
+      const isIncluded = elem.textContent.toLowerCase().includes(this.input.value.toLowerCase());
+      // eslint-disable-next-line no-param-reassign
+      elem.style.display = (isIncluded) ? 'flex' : 'none';
+    });
   }
 
   renderIn(element) {
