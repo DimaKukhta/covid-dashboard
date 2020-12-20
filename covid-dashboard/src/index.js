@@ -3,7 +3,12 @@
 import controlPanel from './js/controlPanel/controlPanel';
 import Map from './js/map/Map.js';
 import './style/style.css';
-import Table from './js/table';
+import Table from './js/table/table';
+import List from './js/list/List';
+
+const list = new List();
+const listBlock = document.querySelector('.list');
+list.renderIn(listBlock);
 
 // Table start
 const tableBlock = document.querySelector('#table');

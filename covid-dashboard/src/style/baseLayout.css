@@ -39,7 +39,8 @@ main {
 }
 
 .list {
-  flex-grow: 2;
+  flex-basis: 220px;
+  flex-grow: 1;
 }
 
 .map {
