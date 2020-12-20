@@ -72,7 +72,7 @@ async function getGlobalData() {
   };
 }
 
-async function getCountriesAndGlobalInfo() {
+export async function getCountriesAndGlobalInfo() {
   const countriesData = await getCountriesData();
   const globalData = await getGlobalData();
 
@@ -112,14 +112,9 @@ async function getHistoricGlobalInfo() {
   return globalHistoricInfo;
 }
 
-async function getHistoricInfo(country) {
+export async function getHistoricInfo(country) {
   if (country === 'Global') {
     return getHistoricGlobalInfo();
   }
   return getHistoricCountryInfo(country);
 }
-
-export default {
-  getCountriesAndGlobalInfo,
-  getHistoricInfo,
-};
