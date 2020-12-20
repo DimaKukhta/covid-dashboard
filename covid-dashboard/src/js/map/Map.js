@@ -7,6 +7,7 @@ export default class Map {
   constructor() {
     this.mapParser();
     this.circleParser();
+    this.legendHanler();
   }
 
   mapParser() {
@@ -19,14 +20,33 @@ export default class Map {
         id: 'mapbox/ckiqepyj912kl17oi3raexvbn',
         tileSize: 512,
         zoomOffset: -1,
+
         accessToken: 'pk.eyJ1IjoiYXJ0ZW1vc2QiLCJhIjoiY2tpcTdieWdxMXRyazJ5cWo5OG0zenhzcCJ9.N-aBN7weDatXK0LtA_7Flw',
       }).addTo(this.mymap);
+
+      this.legend = L.control({ position: 'topright' });
+
+      this.legend.onAdd = (/* map */) => {
+        const legendBlock = document.createElement('div');
+        legendBlock.classList.add('legend');
+        legendBlock.innerHTML += '<h3 class= lagend_head id= lagend_head__ID>Legend</h3>';
+        legendBlock.innerHTML += '<span class= circle_legend__cases id= more_1000_k>Cases > 1.000.000<div class= circle_legend id=circle_more_1000_k></div></span><br>';
+        legendBlock.innerHTML += '<span class= circle_legend__cases id= 1000_k>Cases < 1.000.000<div class= circle_legend id=circle_1000_k></div></span><br> ';
+        legendBlock.innerHTML += '<span class= circle_legend__cases id= 500_k>Cases > 500.000<div class= circle_legend id=circle_500_k></div></span><br> ';
+        legendBlock.innerHTML += '<span class= circle_legend__cases id= 100_k>Cases > 100.000<div class= circle_legend id=circle_100_k></div></span><br> ';
+        legendBlock.innerHTML += '<span class= circle_legend__cases id= 10_k>Cases 1 - 10.000<div class= circle_legend id=circle_10_k></div></span><br> ';
+
+        return legendBlock;
+      };
+
+      this.legend.addTo(this.mymap);
     };
     setTimeout(this.mapPaint, 250);
   }
 
   circleParser() {
     const radiusCorrection = 10;
+
     Object.entries(covidPopulationFlagMock).forEach(([key, value]) => {
       const { lat } = value;
       const { long } = value;
@@ -34,9 +54,8 @@ export default class Map {
       const { deaths } = value;
       const defaultCircleRadius = Math.floor(cases / radiusCorrection);
 
-      if (!lat || !long) {
-        return;
-      }
+      if (!lat || !long) { return; }
+
       const correctLegendRadius = () => {
         // console.log(key, '--', defaultCircleRadius);
         let correctHandeleRad = defaultCircleRadius;
@@ -47,10 +66,10 @@ export default class Map {
           correctHandeleRad = 90000;
         }
         if (cases < 100000) {
-          correctHandeleRad = 70000;
+          correctHandeleRad = 75000;
         }
         if (cases < 50000) {
-          correctHandeleRad = 50000;
+          correctHandeleRad = 60000;
         }
         if (cases < 10000) {
           correctHandeleRad = 30000;
@@ -73,6 +92,29 @@ export default class Map {
       };
       setTimeout(this.circlePaint, 1200);
     });
+  }
+
+  legendHanler() {
+    this.handlerInit = () => {
+      console.log('init');
+      this.legendHead = document.getElementById('lagend_head__ID');
+      // const legendInnerText = document.querySelectorAll('.circle_legend__cases');
+      this.legendInnerCircle = document.querySelectorAll('.circle_legend');
+
+      document.body.addEventListener('click', (target) => {
+        console.log(target.target);
+        if (target.target) {
+          // console.log(legendInnerText);
+          this.legendInnerText = document.querySelectorAll('.circle_legend__cases').forEach((element) => {
+            // console.log(legendInnerText);
+            console.log(element);
+
+            // element.classList.add('show_tex');
+          });
+        }
+      });
+    };
+    setTimeout(this.handlerInit, 0);
   }
 }
 

@@ -1,0 +1,49 @@
+@import './default.css';
+
+.legend {
+    height: min-content;
+}
+
+.circle_legend {
+    border-radius: 50%;
+    background-color: var(--color-text-red);
+    margin-left: 8px;
+    opacity: 0.5;
+}
+
+.circle_legend__cases {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 0.2rem;
+}
+
+.show_tex {
+    max-width: 0px;
+}
+
+#circle_10_k{
+    height: 0.5rem;
+    width: 0.5rem;
+}
+
+#circle_100_k {
+    height: 1rem;
+    width: 1rem;
+}
+
+#circle_500_k {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+#circle_1000_k {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+#circle_more_1000_k {
+    height: 2.5rem;
+    width: 2.5rem;
+}
