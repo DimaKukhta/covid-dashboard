@@ -8,11 +8,16 @@
 }
 
 /* filters */
+.filters {
+  display: flex;
+
+  font-size: 15px;
+}
 .container-for-radio {
   display: flex;  
   align-items: center;
-  justify-content: space-between;
-  width: 32vw;
+
+  column-gap: 10px;
 }
 
 .radio-period,
@@ -33,8 +38,6 @@ input:checked ~ label {
 .button-filters {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 10vw;
 }
 
 .button {

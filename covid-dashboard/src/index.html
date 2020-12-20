@@ -20,32 +20,34 @@
         <p>Global Cases</p>
         <p class="total-amount" id="totalAmount">00 000 000</p>
       </div>
-      <div class="container-for-radio">
-        <div class = "radio-period">
-          <p>
-            <input type="radio" name="period" id="totalCases" value="totalCases" checked />
-            <label for="totalCases">total cases</label>
-          </p>
-          <p>
-            <input type="radio" name="period" id="todayCases" value="todayCases" />
-            <label for="todayCases">today`s cases</label>
-          </p>
+      <div class="filters">
+        <div class="container-for-radio">
+          <div class="radio-period">
+            <p>
+              <input type="radio" name="period" id="totalCases" value="totalCases" checked />
+              <label for="totalCases">total cases</label>
+            </p>
+            <p>
+              <input type="radio" name="period" id="todayCases" value="todayCases" />
+              <label for="todayCases">today`s cases</label>
+            </p>
+          </div>
+          <div class="radio-numbers">
+            <p>
+              <input type="radio" name="numbers" id="inAbsoluteNumbers" value="inAbsoluteNumbers" checked />
+              <label for="inAbsoluteNumbers">in absolute numbers</label>
+            </p>
+            <p>
+              <input type="radio" name="numbers" id="per100ThousandPeople" value="per100ThousandPeople" />
+              <label for="per100ThousandPeople">per 100`000 people</label>
+            </p>
+          </div>
         </div>
-        <div class = "radio-numbers">
-          <p>
-            <input type="radio" name="numbers" id="inAbsoluteNumbers" value="inAbsoluteNumbers" checked />
-            <label for="inAbsoluteNumbers">in absolute numbers</label>
-          </p>
-          <p>
-            <input type="radio" name="numbers" id="per100ThousandPeople" value="per100ThousandPeople" />
-            <label for="per100ThousandPeople">per 100`000 people</label>
-          </p>
+        <div class="button-filters">
+          <div id="cases" class="button button-active">cases</div>
+          <div id="deaths" class="button ">deaths</div>
+          <div id="recovered" class="button ">recovered</div>
         </div>
-      </div>
-      <div class="button-filters">
-        <div id="cases" class="button button-active">cases</div>
-        <div id="deaths" class="button ">deaths</div>
-        <div id="recovered" class="button ">recovered</div>
       </div>
       <div class="container-updated-date">
         <p>Last Updated at (D.M.YYYY)</p>
