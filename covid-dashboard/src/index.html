@@ -1,110 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>COVID-19</title>
-  </head>
-  <body>
-    <header>
-      <div class="header block">
-        <h1>COVID-19 Dashboard</h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./assets/icon.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet" />
+  <title>COVID-19</title>
+</head>
+
+<body>
+  <header>
+    <div class="header block">
+      <h1>COVID-19 Dashboard</h1>
+    </div>
+    <div class="filters">
+      <div class="container-total-amount">
+        <p>Global Cases</p>
+        <p class="total-amount" id="totalAmount">00 000 000</p>
       </div>
-      <div class="filters">
-        <div class="container-total-amount">
-          <p>Global Cases</p>
-          <p class="total-amount" id="totalAmount">00 000 000</p>
+      <div class="container-for-radio">
+        <div>
+          <p>
+            <input type="radio" name="period" id="totalCases" value="totalCases" checked="checked" />
+            <label for="totalCases">total cases</label>
+          </p>
+          <p>
+            <input type="radio" name="period" id="todayCases" value="todayCases" />
+            <label for="todayCases">today`s cases</label>
+          </p>
         </div>
-        <div class="container-for-radio">
-          <div>
-            <p>
-              <input type = "radio"
-              name = "period"
-              id = "totalCases"
-              value = "totalCases"
-              checked = "checked" />
-              <label for = "totalCases">total cases</label>
-            </p>
-            <p>
-              <input type = "radio"
-              name = "period"
-              id = "todayCases"
-              value = "todayCases"/>
-       <label for = "todayCases">today`s cases</label>
-            </p>
-          </div> 
-          <div>
-            <p>
-              <input type = "radio"
-              name = "numbers"
-              id = "inAbsoluteNumbers"
-              value = "inAbsoluteNumbers"
-              checked = "checked" />
-              <label for = "inAbsoluteNumbers">in absolute numbers</label>
-            </p>
-            <p>
-              <input type = "radio"
-              name = "numbers"
-              id = "per100ThousandPeople"
-              value = "per100ThousandPeople" />
-       <label for = "per100ThousandPeople">per 100`000 people</label>
-            </p>
-          </div>  
-        
+        <div>
+          <p>
+            <input type="radio" name="numbers" id="inAbsoluteNumbers" value="inAbsoluteNumbers" checked="checked" />
+            <label for="inAbsoluteNumbers">in absolute numbers</label>
+          </p>
+          <p>
+            <input type="radio" name="numbers" id="per100ThousandPeople" value="per100ThousandPeople" />
+            <label for="per100ThousandPeople">per 100`000 people</label>
+          </p>
+        </div>
+
         <div class="button-filters">
           <div id="cases" class="button button-active">cases</div>
           <div id="deaths" class="button ">deaths</div>
           <div id="recovered" class="button ">recovered</div>
         </div>
       </div>
-        <div class="container-updated-date">
-          <p>Last Updated at (D.M.YYYY)</p>
-          <p class="updated-date" id="updatedDate">00.00.2020</p>
-        </div>
+      <div class="container-updated-date">
+        <p>Last Updated at (D.M.YYYY)</p>
+        <p class="updated-date" id="updatedDate">00.00.2020</p>
       </div>
-    </header>
-    <main>
-      <div id="list" class="list block"></div>
-      <div id="map" class="map block"></div>
-      <div class="container">
-        <div id="table" class="table block"></div>
-        <div id="chart" class="chart block"></div>
+    </div>
+  </header>
+  <main>
+    <div id="list" class="list block"></div>
+    <div id="map" class="map block"></div>
+    <div class="container">
+      <div id="table" class="table block"></div>
+      <div id="chart" class="chart block"></div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer">
+      <div class="footer-text">
+        <span>Created by:</span>
+        <a class="footer-link" href="https://github.com/DimaKukhta">DimaKukhta,</a>
+        <a class="footer-link" href="https://github.com/natgeo89">natgeo89,</a>
+        <a class="footer-link" href="https://github.com/artemosadchuck">artemosadchuck,</a>
+        <a class="footer-link" href="https://github.com/confesssa">confesssa</a>
+        <span>for</span>
+        <a class="footer-link" href="https://rs.school/js/"><img class="footer-image" src="./assets/rss.svg"
+            alt="Rolling Scope School" />
+          Rolling Scope School</a>
+        <span>2020</span>
       </div>
-    </main>
-    <footer>
-      <div class="footer">
-        <div class="footer-text">
-          <span>Created by:</span>
-          <a class="footer-link" href="https://github.com/DimaKukhta"
-            >DimaKukhta,</a
-          >
-          <a class="footer-link" href="https://github.com/natgeo89"
-            >natgeo89,</a
-          >
-          <a class="footer-link" href="https://github.com/artemosadchuck"
-            >artemosadchuck,</a
-          >
-          <a class="footer-link" href="https://github.com/confesssa"
-            >confesssa</a
-          >
-          <span>for</span>
-          <a class="footer-link" href="https://rs.school/js/"
-            ><img
-              class="footer-image"
-              src="./assets/rss.svg"
-              alt="Rolling Scope School"
-            />
-            Rolling Scope School</a
-          >
-          <span>2020</span>
-        </div>
-      </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
+
 </html>

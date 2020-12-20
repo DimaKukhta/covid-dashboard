@@ -1,10 +1,12 @@
+/* eslint-disable max-len */
+/* eslint-disable no-return-assign */
 import createElement from './utils/createElement';
-import { getCountriesAndGlobalInfo } from './getApiData';
+import data from './gettersInfo';
 
 export default class Table {
-  constructor(country) {
+  constructor() {
     this.createTable();
-    this.updateTableInfo(country);
+    this.updateTableInfo();
   }
 
   createTable() {
@@ -26,13 +28,32 @@ export default class Table {
     this.recoveredRow = createElement('tr', 'table-info-recovered', [this.recoveredText, this.recoveredValue], this.tbody);
   }
 
-  updateTableInfo(country) {
-    getCountriesAndGlobalInfo().then((summary) => {
-      this.thead.textContent = country;
-      this.casesValue.textContent = summary[country].cases;
-      this.deathsValue.textContent = summary[country].deaths;
-      this.recoveredValue.textContent = summary[country].recovered;
-    });
+  updateTableInfo(country = 'Global', isTotal = true, isAbsolute = true) {
+    this.thead.textContent = country;
+
+    if (isTotal === true && isAbsolute === true) {
+      data.getDiseaseCount(country).then((result) => this.casesValue.textContent = result);
+      data.getDeathCount(country).then((result) => this.deathsValue.textContent = result);
+      data.getRecoveryCount(country).then((result) => this.recoveredValue.textContent = result);
+    }
+
+    if (isTotal === false && isAbsolute === false) {
+      data.getDiseaseCount100LastDay(country).then((result) => this.casesValue.textContent = result);
+      data.getDeathCount100LastDay(country).then((result) => this.deathsValue.textContent = result);
+      data.getRecoveryCount100LastDay(country).then((result) => this.recoveredValue.textContent = result);
+    }
+
+    if (isTotal === true && isAbsolute === false) {
+      data.getDiseaseCount100(country).then((result) => this.casesValue.textContent = result);
+      data.getDeathCount100(country).then((result) => this.deathsValue.textContent = result);
+      data.getRecoveryCount100(country).then((result) => this.recoveredValue.textContent = result);
+    }
+
+    if (isTotal === false && isAbsolute === true) {
+      data.getDiseaseCountLastDay(country).then((result) => this.casesValue.textContent = result);
+      data.getDeathCountLastDay(country).then((result) => this.deathsValue.textContent = result);
+      data.getRecoveryCountLastDay(country).then((result) => this.recoveredValue.textContent = result);
+    }
   }
 
   renderIn(element) {
