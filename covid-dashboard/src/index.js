@@ -19,3 +19,7 @@ radioGroup.addEventListener('click', () => {
   table.updateTableInfo('Global', isTotal, isAbsolute);
 });
 // Table end
+import controlPanel from './js/controlPanel/controlPanel';
+
+controlPanel.fillControlPanelData();
+controlPanel.toggleLogic();

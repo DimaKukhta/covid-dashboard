@@ -15,33 +15,34 @@
     <div class="header block">
       <h1>COVID-19 Dashboard</h1>
     </div>
-    <div class="filters">
+    <div class="control-panel">
       <div class="container-total-amount">
         <p>Global Cases</p>
         <p class="total-amount" id="totalAmount">00 000 000</p>
       </div>
-      <div class="container-for-radio">
-        <div>
-          <p>
-            <input type="radio" name="period" id="totalCases" value="totalCases" checked="checked" />
-            <label for="totalCases">total cases</label>
-          </p>
-          <p>
-            <input type="radio" name="period" id="todayCases" value="todayCases" />
-            <label for="todayCases">today`s cases</label>
-          </p>
+      <div class="filters">
+        <div class="container-for-radio">
+          <div class="radio-period">
+            <p>
+              <input type="radio" name="period" id="totalCases" value="totalCases" checked />
+              <label for="totalCases">total cases</label>
+            </p>
+            <p>
+              <input type="radio" name="period" id="todayCases" value="todayCases" />
+              <label for="todayCases">today`s cases</label>
+            </p>
+          </div>
+          <div class="radio-numbers">
+            <p>
+              <input type="radio" name="numbers" id="inAbsoluteNumbers" value="inAbsoluteNumbers" checked />
+              <label for="inAbsoluteNumbers">in absolute numbers</label>
+            </p>
+            <p>
+              <input type="radio" name="numbers" id="per100ThousandPeople" value="per100ThousandPeople" />
+              <label for="per100ThousandPeople">per 100`000 people</label>
+            </p>
+          </div>
         </div>
-        <div>
-          <p>
-            <input type="radio" name="numbers" id="inAbsoluteNumbers" value="inAbsoluteNumbers" checked="checked" />
-            <label for="inAbsoluteNumbers">in absolute numbers</label>
-          </p>
-          <p>
-            <input type="radio" name="numbers" id="per100ThousandPeople" value="per100ThousandPeople" />
-            <label for="per100ThousandPeople">per 100`000 people</label>
-          </p>
-        </div>
-
         <div class="button-filters">
           <div id="cases" class="button button-active">cases</div>
           <div id="deaths" class="button ">deaths</div>
