@@ -2,3 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import Map from './js/map/Map.js';
 import './style/style.css';
+import controlPanel from './js/controlPanel/controlPanel';
+
+controlPanel.fillControlPanelData();
+controlPanel.toggleLogic();
