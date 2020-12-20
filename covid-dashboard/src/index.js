@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 // eslint-disable-next-line no-unused-vars
+import controlPanel from './js/controlPanel/controlPanel';
 import Map from './js/map/Map.js';
 import './style/style.css';
 import Table from './js/table';
@@ -19,7 +20,6 @@ radioGroup.addEventListener('click', () => {
   table.updateTableInfo('Global', isTotal, isAbsolute);
 });
 // Table end
-import controlPanel from './js/controlPanel/controlPanel';
 
 controlPanel.fillControlPanelData();
 controlPanel.toggleLogic();
