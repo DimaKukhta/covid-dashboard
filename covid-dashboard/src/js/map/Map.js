@@ -26,23 +26,50 @@ export default class Map {
   }
 
   circleParser() {
-    Object.entries(covidPopulationFlagMock).forEach(([, value]) => {
+    const radiusCorrection = 10;
+    Object.entries(covidPopulationFlagMock).forEach(([key, value]) => {
       const { lat } = value;
       const { long } = value;
+      const { cases } = value;
+      const { deaths } = value;
+      const defaultCircleRadius = Math.floor(cases / radiusCorrection);
+
       if (!lat || !long) {
         return;
       }
+      const correctLegendRadius = () => {
+        // console.log(key, '--', defaultCircleRadius);
+        let correctHandeleRad = defaultCircleRadius;
+        if (cases < 1000000) {
+          correctHandeleRad = 120000;
+        }
+        if (cases < 500000) {
+          correctHandeleRad = 90000;
+        }
+        if (cases < 100000) {
+          correctHandeleRad = 70000;
+        }
+        if (cases < 50000) {
+          correctHandeleRad = 50000;
+        }
+        if (cases < 10000) {
+          correctHandeleRad = 30000;
+        }
+        return correctHandeleRad;
+      };
 
       this.circlePaint = () => {
         this.circle = L.circle([lat, long], {
           color: 'red',
           fillColor: '#f03',
-          fillOpacity: 0.5,
+          fillOpacity: 0.4,
+          opacity: 0.7,
           radius: 500,
           bubblingMouseEvents: true,
-        }).addTo(this.mymap);
-
-        this.circle.bindPopup('I am a circle.');
+        }).setRadius(
+          correctLegendRadius(),
+        ).addTo(this.mymap);
+        this.circle.bindPopup(`${key.toUpperCase().bold()} - Cases: ${cases}.  Deaths: ${deaths}.`);
       };
       setTimeout(this.circlePaint, 1200);
     });
