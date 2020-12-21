@@ -34,11 +34,36 @@ main {
   justify-content: space-between;
 
   max-height: calc(100vh - 165px);
-  
+
   background: var(--color-bg-main);
 }
 
+.resize-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  z-index: 401;
+
+  width: 17px;
+  height: 17px;
+
+  background-color: var(--color-text-white);
+  background-image: url(../assets/expand.svg);
+  background-size: cover;
+  border: 1px var(--color-text-white) solid;
+  border-collapse: collapse;
+  opacity: 0.5;
+}
+
+.resize-button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
 .list {
+  position: relative;
+
   flex-basis: 220px;
   flex-grow: 1;
 }
@@ -58,10 +83,14 @@ main {
 }
 
 .table {
+  position: relative;
+
   flex-grow: 2;
 }
 
 .chart {
+  position: relative;
+
   flex-grow: 3;
 }
 
