@@ -29,6 +29,8 @@ h1 {
 
 /* MAIN */
 main {
+  position: relative;
+
   display: flex;
   flex: 1 0 auto;
   justify-content: space-between;
@@ -56,9 +58,23 @@ main {
   opacity: 0.5;
 }
 
+.resize-button-active {
+  background-image: url(../assets/exit-fullscreen.svg);
+}
+
 .resize-button:hover {
   cursor: pointer;
   opacity: 1;
+}
+
+.full-screen {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  z-index: 300;
+
+  width: 98vw;
 }
 
 .list {

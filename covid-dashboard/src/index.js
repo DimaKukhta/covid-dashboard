@@ -26,5 +26,36 @@ radioGroup.addEventListener('click', () => {
 });
 // Table end
 
+// Resize buttons
+const resizeMap = document.querySelector('#resize-map');
+const resizeList = document.querySelector('#resize-list');
+const resizeTable = document.querySelector('#resize-table');
+const resizeChart = document.querySelector('#resize-chart');
+
+function resizeMapBlock() {
+  resizeMap.parentElement.classList.toggle('full-screen');
+  resizeMap.classList.toggle('resize-button-active');
+}
+
+function resizeTableBlock() {
+  resizeTable.parentElement.classList.toggle('full-screen');
+  resizeTable.classList.toggle('resize-button-active');
+}
+
+function resizeListBlock() {
+  resizeList.parentElement.classList.toggle('full-screen');
+  resizeList.classList.toggle('resize-button-active');
+}
+
+function resizeChartBlock() {
+  resizeChart.parentElement.classList.toggle('full-screen');
+  resizeChart.classList.toggle('resize-button-active');
+}
+
+resizeMap.addEventListener('click', resizeMapBlock);
+resizeTable.addEventListener('click', resizeTableBlock);
+resizeList.addEventListener('click', resizeListBlock);
+resizeChart.addEventListener('click', resizeChartBlock);
+
 controlPanel.fillControlPanelData();
 controlPanel.toggleLogic();
