@@ -14,20 +14,10 @@
 }
 
 tr,
-<<<<<<< HEAD
-td {
-  width: 50%;
-  height: 2.5rem;
-  padding-left: 20px;
-}
-
-td {
-=======
 td,
 th {
   padding-left: 20px;  
 
->>>>>>> list
   border: 2px solid var(--color-text-white);
 }
 
