@@ -5,6 +5,7 @@ import Map from './js/map/Map.js';
 import './style/style.css';
 import Table from './js/table/table';
 import List from './js/list/List';
+import ChartCovid from './js/chart/Chart';
 
 controlPanel.fillControlPanelData();
 controlPanel.toggleLogic();
@@ -39,6 +40,12 @@ filters.addEventListener('click', ({ target }) => {
 });
 // List end
 
+// Start Chart 
+
+chart = new ChartCovid();
+
+
+// End Chart
 // Resize buttons
 
 function resizeBlock({ target }) {
