@@ -27,25 +27,12 @@ h1 {
   text-align: center;
 }
 
-/* MAIN */
-main {
-  position: relative;
-
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: space-between;
-
-  max-height: calc(100vh - 165px);
-
-  background: var(--color-bg-main);
-}
-
 .resize-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
 
-  z-index: 401;
+  z-index: 500;
 
   width: 17px;
   height: 17px;
@@ -55,60 +42,48 @@ main {
   background-size: cover;
   border: 1px var(--color-text-white) solid;
   border-collapse: collapse;
-  opacity: 0.5;
 }
 
-.resize-button-active {
+.resize-button.btn-active {
+  z-index: 2001;
+
   background-image: url(../assets/exit-fullscreen.svg);
 }
 
 .resize-button:hover {
   cursor: pointer;
-  opacity: 1;
 }
 
-.full-screen {
-  position: absolute;
 
-  top: 0;
-  left: 0;
-  z-index: 300;
-
-  width: 98vw;
-}
-
-.list {
+/* MAIN */
+main {
   position: relative;
 
-  flex-basis: 220px;
-  flex-grow: 1;
-}
-
-.map {
-  flex-grow: 4;
-}
-
-.container-1 {
   display: flex;
-  flex-direction: column;
-  flex-grow: 11;
+
+  height: 80vh;
+
+  max-height: calc(100vh - 165px);
+
+  background: var(--color-bg-main);
 }
 
-.container-2 {
+.container-map-table-chart {
+
   display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 10;
+
 }
 
-.table {
-  position: relative;
+.container-table-chart {
 
-  flex-grow: 2;
-}
-
-.chart {
-  position: relative;
-
+  display: flex;
+  flex-direction: row-reverse;
   flex-grow: 3;
+  max-height: 250px;
 }
+
 
 /* FOOTER */
 footer {

@@ -9,7 +9,7 @@ function fillControlPanelData() {
 
     const date = new Date(Global.updated);
     const day = addZeroes(date.getDate());
-    const month = addZeroes(date.getMonth());
+    const month = addZeroes(date.getMonth() + 1);
     const year = date.getFullYear();
     const hours = addZeroes(date.getHours());
     const minutes = addZeroes(date.getMinutes());

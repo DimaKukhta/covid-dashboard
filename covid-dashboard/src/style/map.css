@@ -1,0 +1,15 @@
+.map {
+  position: relative;
+
+  flex-grow: 6;
+}
+
+.map.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
