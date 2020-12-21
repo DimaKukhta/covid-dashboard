@@ -16,10 +16,6 @@
       <h1>COVID-19 Dashboard</h1>
     </div>
     <div class="control-panel">
-      <div class="container-total-amount">
-        <p>Global Cases</p>
-        <p class="total-amount" id="totalAmount">00 000 000</p>
-      </div>
       <div class="filters">
         <div class="container-for-radio">
           <div class="radio-period">
@@ -49,19 +45,52 @@
           <div id="recovered" class="button ">recovered</div>
         </div>
       </div>
+
+    </div>
+  </header>
+  <main>
+    <div class="container-totalCases-list-updateDate">
+      <div class="container-total-amount block">
+        <p>Global Cases</p>
+        <p class="total-amount" id="totalAmount">00 000 000</p>
+      </div>
+      <div id="list" class="list block">
+        <div class="resize-button"></div>
+      </div>
       <div class="container-updated-date">
         <p>Last Updated at (D.M.YYYY)</p>
         <p class="updated-date" id="updatedDate">00.00.2020</p>
       </div>
     </div>
-  </header>
-  <main>
-    <div id="list" class="list block"></div>
-    <div id="map" class="map block"></div>
-    <div class="container">
-      <div id="table" class="table block"></div>
-      <div id="chart" class="chart block"></div>
+
+    <div class="container-map-table-chart">
+      <div id="map" class="map block">
+        <div class="resize-button"></div>
+      </div>
+      <div class="container-table-chart">
+        <div id="table" class="table block">
+          <div class="resize-button"></div>
+        </div>
+        <div id="chart" class="chart block">
+          <div class="resize-button"></div>
+        </div>
+      </div>
     </div>
+    <!-- <div class="container-1">
+      <div class="container-2">
+        <div id="table" class="table block">
+          <div id="resize-table" class="resize-button"></div>
+        </div>
+        <div id="chart" class="chart block">
+          <div id="resize-chart" class="resize-button"></div>
+        </div>
+      </div>
+      <div id="map" class="map block">
+        <div id="resize-map" class="resize-button"></div>
+      </div>
+
+    </div> -->
+
   </main>
   <footer>
     <div class="footer">

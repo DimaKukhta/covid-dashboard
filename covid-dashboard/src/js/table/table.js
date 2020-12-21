@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
-import createElement from './utils/createElement';
-import data from './gettersInfo';
+import createElement from '../utils/createElement';
+import data from '../api/gettersInfo';
 
 export default class Table {
   constructor() {
@@ -23,8 +23,8 @@ export default class Table {
     this.deathsValue = createElement('td', 'table-info-deaths--value');
     this.deathsRow = createElement('tr', 'table-info-deaths', [this.deathText, this.deathsValue], this.tbody);
 
-    this.recoveredText = createElement('td', 'table-info-recoveded--text', 'Recovered');
-    this.recoveredValue = createElement('td', 'table-info-recoveded--value');
+    this.recoveredText = createElement('td', 'table-info-recovered--text', 'Recovered');
+    this.recoveredValue = createElement('td', 'table-info-recovered--value');
     this.recoveredRow = createElement('tr', 'table-info-recovered', [this.recoveredText, this.recoveredValue], this.tbody);
   }
 

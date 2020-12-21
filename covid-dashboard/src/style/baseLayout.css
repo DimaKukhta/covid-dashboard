@@ -27,37 +27,68 @@ h1 {
   text-align: center;
 }
 
+.resize-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  z-index: 500;
+
+  width: 17px;
+  height: 17px;
+
+  background-color: var(--color-text-white);
+  background-image: url(../assets/expand.svg);
+  background-size: cover;
+  border: 1px var(--color-text-white) solid;
+  border-collapse: collapse;
+}
+
+.resize-button.btn-active {
+  z-index: 2001;
+
+  background-image: url(../assets/exit-fullscreen.svg);
+}
+
+.resize-button:hover {
+  cursor: pointer;
+}
 
 
 /* MAIN */
 main {
+  position: relative;
+
   display: flex;
-  flex: 1 0 auto;
-  justify-content: space-between;
+
+  height: 80vh;
+
+  max-height: calc(100vh - 165px);
 
   background: var(--color-bg-main);
 }
 
-.list {
-  flex-grow: 2;
-}
-
-.map {
-  flex-grow: 6;
-}
-
-.container {
+.container-totalCases-list-updateDate {
   display: flex;
+  flex-basis: 250px;
   flex-direction: column;
+  max-height: 100%;
+}
+
+.container-map-table-chart {
+
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 10;
+
+}
+
+.container-table-chart {
+
+  display: flex;
+  flex-direction: row-reverse;
   flex-grow: 3;
-}
-
-.table {
-  flex-grow: 0;
-}
-
-.chart {
-  flex-grow: 2;
+  max-height: 250px;
 }
 
 /* FOOTER */
