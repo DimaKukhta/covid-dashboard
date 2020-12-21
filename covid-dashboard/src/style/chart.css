@@ -1,5 +1,7 @@
 .chart {
   position: relative;
+
+  flex-grow: 2;
 }
 
 .chart.full-screen {

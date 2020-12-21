@@ -68,18 +68,21 @@ main {
   background: var(--color-bg-main);
 }
 
-.container {
-  position: static;
+.container-map-table-chart {
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   flex-grow: 3;
 }
 
+.container-table-chart {
 
-.chart {
-  flex-grow: 2;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 3;
+  max-height: 250px;
 }
+
 
 /* FOOTER */
 footer {
