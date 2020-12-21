@@ -16,7 +16,6 @@
 tr,
 td,
 th {
-  /* height: 50px; */
   padding-left: 20px;  
 
   border: 2px solid var(--color-text-white);

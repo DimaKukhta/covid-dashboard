@@ -5,9 +5,10 @@
   position: relative;
 
   display: flex;
-  flex-basis: 220px;
+  flex-basis: 250px;
+
   flex-direction: column;
-  flex-grow: 1;
+
   max-height: 100%;
   overflow-y: scroll;
 
