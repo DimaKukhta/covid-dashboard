@@ -63,7 +63,16 @@ main {
 
   height: 80vh;
 
+  max-height: calc(100vh - 165px);
+
   background: var(--color-bg-main);
+}
+
+.container-totalCases-list-updateDate {
+  display: flex;
+  flex-basis: 250px;
+  flex-direction: column;
+  max-height: 100%;
 }
 
 .container-map-table-chart {
@@ -81,7 +90,6 @@ main {
   flex-grow: 3;
   max-height: 250px;
 }
-
 
 /* FOOTER */
 footer {
