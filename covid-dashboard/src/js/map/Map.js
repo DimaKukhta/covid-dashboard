@@ -7,7 +7,7 @@ export default class Map {
   constructor() {
     this.mapParser();
     this.circleParser();
-    this.legendHanler();
+    this.initLegend();
   }
 
   mapParser() {
@@ -94,27 +94,29 @@ export default class Map {
     });
   }
 
-  legendHanler() {
+  initLegend() {
     this.handlerInit = () => {
-      console.log('init');
+      console.log('init-Legend');
       this.legendHead = document.getElementById('lagend_head__ID');
-      // const legendInnerText = document.querySelectorAll('.circle_legend__cases');
       this.legendInnerCircle = document.querySelectorAll('.circle_legend');
 
-      document.body.addEventListener('click', (target) => {
-        console.log(target.target);
-        if (target.target) {
-          // console.log(legendInnerText);
+      this.legendHead.addEventListener('mouseover', (event) => {
+        // console.log(event.target.id);
+        if (event.target.id === 'lagend_head__ID') {
           this.legendInnerText = document.querySelectorAll('.circle_legend__cases').forEach((element) => {
-            // console.log(legendInnerText);
-            console.log(element);
-
-            // element.classList.add('show_tex');
+            element.classList.add('show_tex');
+          });
+        }
+      });
+      this.legendHead.addEventListener('mouseleave', (event) => {
+        if (event.target.id === 'lagend_head__ID') {
+          this.legendInnerText = document.querySelectorAll('.circle_legend__cases').forEach((element) => {
+            element.classList.remove('show_tex');
           });
         }
       });
     };
-    setTimeout(this.handlerInit, 0);
+    setTimeout(this.handlerInit, 1250);
   }
 }
 
