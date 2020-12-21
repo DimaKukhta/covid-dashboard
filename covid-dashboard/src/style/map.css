@@ -14,10 +14,9 @@
 
 .circle_legend {
     margin-left: 8px;
-
-    background-color: var(--color-text-red);
+    
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .circle_legend__cases {
@@ -62,6 +61,20 @@
 #circle_more_1000_k {
     width: 2.5rem;
     height: 2.5rem;
+}
+
+.recovered_col {
+    border: var(--color-text-green) 2px solid;
+    background-color: rgba(0, 128, 0, 0.301);
+}
+
+.cases_col {
+    background-color: var(--color-text-red);
+}
+
+.deaths_col {
+    border: var(--color-text-red) 2px solid;
+    background-color: var(--color-deaths-map);
 }
 
 .map {

@@ -9,6 +9,8 @@
   --color-diagram: #ffaa00;
   --color-highlight-blue: #1061a6;
   --color-highlight-white: #ffffff;
+  --color-deaths-map:  #0000006b;
+
   height: 100%;
 
   color: var(--color-text-white);

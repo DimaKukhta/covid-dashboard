@@ -1,10 +1,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/**
+ * @param {String} classNames -circle: color(cases_col:red; deaths_col:lila; recovered_col:green)
+ */
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import covidPopulationFlagMock from '../mocks/covidPopulationFlagMock';
 
 export default class Map {
-  constructor() {
+  constructor(colorClass, fillColor, circleBorderColor) {
+    this.circleBorderColor = circleBorderColor;
+    this.fillColor = fillColor;
+    this.color = colorClass;
     this.mapParser();
     this.circleParser();
     this.initLegend();
@@ -45,6 +51,8 @@ export default class Map {
   }
 
   circleParser() {
+    console.log('init-circleParser');
+
     const radiusCorrection = 10;
 
     Object.entries(covidPopulationFlagMock).forEach(([key, value]) => {
@@ -79,8 +87,8 @@ export default class Map {
 
       this.circlePaint = () => {
         this.circle = L.circle([lat, long], {
-          color: 'red',
-          fillColor: '#f03',
+          color: this.circleBorderColor,
+          fillColor: this.fillColor,
           fillOpacity: 0.4,
           opacity: 0.7,
           radius: 500,
@@ -99,7 +107,7 @@ export default class Map {
       console.log('init-Legend');
       this.legendHead = document.getElementById('lagend_head__ID');
       this.legendInnerCircle = document.querySelectorAll('.circle_legend');
-
+      this.legendInnerCircle.forEach((el) => el.classList.add(this.color));
       this.legendHead.addEventListener('mouseover', (event) => {
         // console.log(event.target.id);
         if (event.target.id === 'lagend_head__ID') {
@@ -121,4 +129,7 @@ export default class Map {
 }
 
 // eslint-disable-next-line no-new
-new Map();
+// new Map('deaths_col', '#0000006b', 'red');
+// new Map('cases_col', 'red', 'red');
+new Map('recovered_col', ' #2b912b6b', '#70a800');
+
