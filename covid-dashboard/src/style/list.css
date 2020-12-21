@@ -2,17 +2,31 @@
 
 
 .list {
+  position: relative;
+
   display: flex;
+  flex-basis: 250px;
+
   flex-direction: column;
-  max-height: 81vh;
+
+  max-height: 100%;
   overflow-y: scroll;
 
   font-size: 0.9rem;
 }
 
+.list.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
 .list-countries--elem {
   display: flex;
-
   align-items: center;
   margin-bottom: 5px;
   padding-left: 20px;
@@ -28,8 +42,9 @@
 }
 
 .list-input {
-  width: 90%;
+  width: 85%;
   margin: 10px auto;
+  padding-left: 10px;
 
   font-size: 1.2rem;
 }
@@ -39,11 +54,9 @@
 }
 
 .list-countries--country {
-  width: fit-content;
+  width: min-content;
 }
 
 .list-countries--flag {
-  /* margin-left: 5px; */
   width: 25px;
-
 }
