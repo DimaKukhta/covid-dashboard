@@ -78,7 +78,7 @@ export async function getCountriesAndGlobalInfo() {
 
   const summaryData = Object.assign(countriesData, globalData);
   // just for control
-  console.log(JSON.stringify(summaryData, null, 2));
+  // console.log(JSON.stringify(summaryData, null, 2));
   return summaryData;
 }
 
@@ -99,7 +99,7 @@ async function getHistoricCountryInfo(country) {
   const { cases, deaths, recovered } = response.timeline;
   const countryHistoricInfo = { cases, deaths, recovered };
   // just for control
-  console.log(JSON.stringify(countryHistoricInfo, null, 2));
+  // console.log(JSON.stringify(countryHistoricInfo, null, 2));
   return countryHistoricInfo;
 }
 
@@ -108,7 +108,7 @@ async function getHistoricGlobalInfo() {
   const { cases, deaths, recovered } = response;
   const globalHistoricInfo = { cases, deaths, recovered };
   // just for control
-  console.log(JSON.stringify(globalHistoricInfo, null, 2));
+  // console.log(JSON.stringify(globalHistoricInfo, null, 2));
   return globalHistoricInfo;
 }
 

@@ -1,0 +1,49 @@
+@import './default.css';
+
+
+.list {
+  display: flex;
+  flex-direction: column;
+  max-height: 81vh;
+  overflow-y: scroll;
+
+  font-size: 0.9rem;
+}
+
+.list-countries--elem {
+  display: flex;
+
+  align-items: center;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.list-countries--elem:hover {
+  background-color: var(--color-text-blue);
+  cursor: pointer;  
+}
+
+.list-countries--elem > :not(:first-child) {
+  margin-left: 10px;
+}
+
+.list-input {
+  width: 90%;
+  margin: 10px auto;
+
+  font-size: 1.2rem;
+}
+
+.list-countries--filter {
+  color: var(--color-text-red);
+}
+
+.list-countries--country {
+  width: fit-content;
+}
+
+.list-countries--flag {
+  /* margin-left: 5px; */
+  width: 25px;
+
+}

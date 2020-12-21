@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
-import createElement from './utils/createElement';
-import data from './gettersInfo';
+import createElement from '../utils/createElement';
+import data from '../api/gettersInfo';
 
 export default class Table {
   constructor() {

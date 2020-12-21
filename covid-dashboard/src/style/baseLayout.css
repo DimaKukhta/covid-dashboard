@@ -27,8 +27,6 @@ h1 {
   text-align: center;
 }
 
-
-
 /* MAIN */
 main {
   display: flex;
@@ -39,7 +37,8 @@ main {
 }
 
 .list {
-  flex-grow: 4;
+  flex-basis: 220px;
+  flex-grow: 1;
 }
 
 .map {
