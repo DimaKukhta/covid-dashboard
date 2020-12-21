@@ -13,7 +13,7 @@ export default class List {
     this.createList();
   }
 
-  createList() {
+  createList(filter = 'cases') {
     const parent = document.querySelector('.list');
     this.input = createElement('input', 'list-input', null, parent, ['type', 'text'], ['placeholder', 'Search country']);
 
@@ -21,16 +21,34 @@ export default class List {
 
     this.list = createElement('ul', 'list-countries');
     getCountriesAndGlobalInfo().then((summary) => {
-      const sortedList = sortListBy(Object.entries(summary), 'cases');
+      const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
-        const filter = summary[country].cases;
-        const casesElem = createElement('span', 'list-countries--filter', `${filter}`);
+        const count = summary[country][filter];
+        const countElem = createElement('span', 'list-countries--filter', `${count}`);
         const countryElem = createElement('div', 'list-countries--country', country);
         const flagSrc = (country === 'Global')
           ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
           : summary[country].flag;
         const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
-        this.listElem = createElement('li', 'list-countries--elem', [casesElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
+        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
+        return this.listElem;
+      });
+    });
+  }
+
+  updateList(filter) {
+    this.list.innerHTML = '';
+    getCountriesAndGlobalInfo().then((summary) => {
+      const sortedList = sortListBy(Object.entries(summary), filter);
+      sortedList.map(([country]) => {
+        const count = summary[country][filter];
+        const countElem = createElement('span', 'list-countries--filter', `${count}`);
+        const countryElem = createElement('div', 'list-countries--country', country);
+        const flagSrc = (country === 'Global')
+          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
+          : summary[country].flag;
+        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
+        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
         return this.listElem;
       });
     });

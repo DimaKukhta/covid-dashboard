@@ -6,6 +6,9 @@ import './style/style.css';
 import Table from './js/table/table';
 import List from './js/list/List';
 
+controlPanel.fillControlPanelData();
+controlPanel.toggleLogic();
+
 const list = new List();
 const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
@@ -26,8 +29,15 @@ radioGroup.addEventListener('click', () => {
 });
 // Table end
 
-controlPanel.fillControlPanelData();
-controlPanel.toggleLogic();
+// List start
+const filters = document.querySelector('.button-filters');
+
+filters.addEventListener('click', ({ target }) => {
+  if (target.classList.contains('button-active')) {
+    list.updateList(target.id);
+  }
+});
+// List end
 
 // Resize buttons
 
