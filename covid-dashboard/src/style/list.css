@@ -54,7 +54,7 @@
 }
 
 .list-countries--country {
-  width: fit-content;
+  width: min-content;
 }
 
 .list-countries--flag {
