@@ -13,13 +13,7 @@ export default class List {
     this.createList();
   }
 
-  createList(filter = 'cases') {
-    const parent = document.querySelector('.list');
-    this.input = createElement('input', 'list-input', null, parent, ['type', 'text'], ['placeholder', 'Search country']);
-
-    this.input.addEventListener('input', this.searchCountry.bind(this));
-
-    this.list = createElement('ul', 'list-countries');
+  createListChildren(filter) {
     getCountriesAndGlobalInfo().then((summary) => {
       const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
@@ -36,22 +30,19 @@ export default class List {
     });
   }
 
+  createList(filter = 'cases') {
+    const parent = document.querySelector('.list');
+    this.input = createElement('input', 'list-input', null, parent, ['type', 'text'], ['placeholder', 'Search country']);
+
+    this.input.addEventListener('input', this.searchCountry.bind(this));
+
+    this.list = createElement('ul', 'list-countries');
+    this.createListChildren(filter);
+  }
+
   updateList(filter) {
     this.list.innerHTML = '';
-    getCountriesAndGlobalInfo().then((summary) => {
-      const sortedList = sortListBy(Object.entries(summary), filter);
-      sortedList.map(([country]) => {
-        const count = summary[country][filter];
-        const countElem = createElement('span', 'list-countries--filter', `${count}`);
-        const countryElem = createElement('div', 'list-countries--country', country);
-        const flagSrc = (country === 'Global')
-          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
-          : summary[country].flag;
-        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
-        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
-        return this.listElem;
-      });
-    });
+    this.createListChildren(filter);
   }
 
   searchCountry() {

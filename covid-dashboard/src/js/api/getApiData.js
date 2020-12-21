@@ -32,10 +32,16 @@ async function getCountriesData() {
       lat: countryInfo.lat,
       long: countryInfo.long,
       cases,
-      todayCases,
       deaths,
-      todayDeaths,
       recovered,
+      casesPer100: +((cases * 100000) / population).toFixed(2),
+      deathsPer100: +((deaths * 100000) / population).toFixed(2),
+      recoveredPer100: +((recovered * 100000) / population).toFixed(2),
+      todayCasesPer100: +((todayCases * 100000) / population).toFixed(2),
+      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(2),
+      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(2),
+      todayCases,
+      todayDeaths,
       todayRecovered,
       population,
       updated,
@@ -61,10 +67,16 @@ async function getGlobalData() {
   return {
     Global: {
       cases,
-      todayCases,
       deaths,
-      todayDeaths,
       recovered,
+      casesPer100: +((cases * 100000) / population).toFixed(2),
+      deathsPer100: +((deaths * 100000) / population).toFixed(2),
+      recoveredPer100: +((recovered * 100000) / population).toFixed(2),
+      todayCasesPer100: +((todayCases * 100000) / population).toFixed(2),
+      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(2),
+      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(2),
+      todayCases,
+      todayDeaths,
       todayRecovered,
       population,
       updated,
@@ -78,7 +90,7 @@ export async function getCountriesAndGlobalInfo() {
 
   const summaryData = Object.assign(countriesData, globalData);
   // just for control
-  // console.log(JSON.stringify(summaryData, null, 2));
+  console.log(JSON.stringify(summaryData, null, 2));
   return summaryData;
 }
 
