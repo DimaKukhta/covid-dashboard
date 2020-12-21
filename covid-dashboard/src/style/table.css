@@ -1,17 +1,31 @@
 @import './default.css';
 
-table {
+.table-info {
   width: 100%;
 
   border-collapse: collapse;
+}
+
+.table {
+  position: relative;
 }
 
 tr,
 td,
 th {
   height: 50px;
-  padding-left: 20px;
-  
+  padding-left: 20px;  
+
   border: 2px solid var(--color-text-white);
 }
 
+
+.table.full-screen {
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 1001;
+
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);  
+}

@@ -1,4 +1,6 @@
 @import './baseLayout.css';
 @import './control-panel.css';
-@import './table.css';
 @import './list.css';
+@import './chart.css';
+@import './map.css';
+@import './table.css';

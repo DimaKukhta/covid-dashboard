@@ -28,3 +28,16 @@ radioGroup.addEventListener('click', () => {
 
 controlPanel.fillControlPanelData();
 controlPanel.toggleLogic();
+
+// Resize buttons
+
+function resizeBlock({ target }) {
+  target.parentElement.classList.toggle('full-screen');
+  target.classList.toggle('btn-active');
+}
+
+const arrayOfResizeBtns = Array.from(document.querySelectorAll('.resize-button'));
+
+arrayOfResizeBtns.forEach((btn) => {
+  btn.addEventListener('click', resizeBlock);
+});
