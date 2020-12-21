@@ -6,6 +6,9 @@ import './style/style.css';
 import Table from './js/table/table';
 import List from './js/list/List';
 
+controlPanel.fillControlPanelData();
+controlPanel.toggleLogic();
+
 const list = new List();
 const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
@@ -26,39 +29,15 @@ radioGroup.addEventListener('click', () => {
 });
 // Table end
 
-// Resize buttons
-const resizeMap = document.querySelector('#resize-map');
-const resizeList = document.querySelector('#resize-list');
-const resizeTable = document.querySelector('#resize-table');
-const resizeChart = document.querySelector('#resize-chart');
+// List start
+const filters = document.querySelector('.button-filters');
 
-function resizeMapBlock() {
-  resizeMap.parentElement.classList.toggle('full-screen');
-  resizeMap.classList.toggle('resize-button-active');
-}
-
-function resizeTableBlock() {
-  resizeTable.parentElement.classList.toggle('full-screen');
-  resizeTable.classList.toggle('resize-button-active');
-}
-
-function resizeListBlock() {
-  resizeList.parentElement.classList.toggle('full-screen');
-  resizeList.classList.toggle('resize-button-active');
-}
-
-function resizeChartBlock() {
-  resizeChart.parentElement.classList.toggle('full-screen');
-  resizeChart.classList.toggle('resize-button-active');
-}
-
-resizeMap.addEventListener('click', resizeMapBlock);
-resizeTable.addEventListener('click', resizeTableBlock);
-resizeList.addEventListener('click', resizeListBlock);
-resizeChart.addEventListener('click', resizeChartBlock);
-
-controlPanel.fillControlPanelData();
-controlPanel.toggleLogic();
+filters.addEventListener('click', ({ target }) => {
+  if (target.classList.contains('button-active')) {
+    list.updateList(target.id);
+  }
+});
+// List end
 
 // Resize buttons
 
