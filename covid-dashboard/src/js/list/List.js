@@ -18,7 +18,6 @@ export default class List {
     getCountriesAndGlobalInfo().then((summary) => {
       const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
-        // const summaryObj = JSON.parse(JSON.stringify(summary));
         let count = summary[country][filter];
         if (count === null) count = 'no info';
         const countElem = createElement('span', 'list-countries--filter', `${count}`);

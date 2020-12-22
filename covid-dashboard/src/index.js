@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 // eslint-disable-next-line no-unused-vars
 import getFilterPosition from './js/utils/getFilterPosition';
@@ -28,22 +29,22 @@ const filters = document.querySelector('.filters');
 
 filters.addEventListener('click', ({ target }) => {
   const isRadio = target.dataset.radio === 'true';
-  const isFilter = target.classList.contains('button-active') || false;
+  const isFilter = target.classList.contains('button-active');
 
   // filters position
   const isTotal = radioGroup.querySelector('#totalCases').checked;
   const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
 
-  if (isRadio) {
-    // table update
-    // country will change when List will be implemented;
-    table.updateTableInfo('Global', isTotal, isAbsolute);
-  }
-
   if (isFilter || isRadio) {
     const filterBtn = filters.querySelector('.button-active').id;
 
     list.updateList(getFilterPosition(filterBtn, isTotal, isAbsolute));
+
+    if (isRadio) {
+      // table update
+      // country will change when List will be implemented;
+      table.updateTableInfo('Global', isTotal, isAbsolute);
+    }
   }
 });
 // List and Table update END
