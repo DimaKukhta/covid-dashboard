@@ -32,16 +32,32 @@ export default class Map {
       }).addTo(this.mymap);
 
       const legend = L.control({ position: 'topright' });
+      const filter = ['Cases', 'Deaths', 'Recovered'];
+      let defaultLegendValue = ['1.000.000', '500.000', '100.000', '10.000'];
+      // const deathsLegendValue = ['1.000.000', '500.000', '100.000', '10.000'];
+      // const recoveredLegendValue = ['1.000.000', '100.000', '1.000', '1-1000'];
 
+      let defaultLegendKey = filter[0];
+      if (this.keyMapCircleRadius === 'cases') {
+        [defaultLegendKey] = filter;
+      }
+      if (this.keyMapCircleRadius === 'deaths') {
+        [, defaultLegendKey] = filter;
+        defaultLegendValue = ['300.000', '100.000', '10.000', '1-1000'];
+      }
+      if (this.keyMapCircleRadius === 'recovered') {
+        [, , defaultLegendKey] = filter;
+        defaultLegendValue = ['1.000.000', '100.000', '1.000', '1-1000'];
+      }
       legend.onAdd = (/* map */) => {
         const legendBlock = document.createElement('div');
         legendBlock.classList.add('legend');
-        legendBlock.innerHTML += '<h3 class= lagend_head id= lagend_head__ID>Legend</h3>';
-        legendBlock.innerHTML += '<span class= circle_legend__cases id= more_1000_k>Cases > 1.000.000<div class= circle_legend id=circle_more_1000_k></div></span><br>';
-        legendBlock.innerHTML += '<span class= circle_legend__cases id= 1000_k>Cases < 1.000.000<div class= circle_legend id=circle_1000_k></div></span><br> ';
-        legendBlock.innerHTML += '<span class= circle_legend__cases id= 500_k>Cases > 500.000<div class= circle_legend id=circle_500_k></div></span><br> ';
-        legendBlock.innerHTML += '<span class= circle_legend__cases id= 100_k>Cases > 100.000<div class= circle_legend id=circle_100_k></div></span><br> ';
-        legendBlock.innerHTML += '<span class= circle_legend__cases id= 10_k>Cases 1 - 10.000<div class= circle_legend id=circle_10_k></div></span><br> ';
+        legendBlock.innerHTML += `<h3 class= lagend_head id= lagend_head__ID>Legend ${defaultLegendKey}</h3>`;
+        legendBlock.innerHTML += `<span class= circle_legend__cases id= more_1000_k>${defaultLegendKey} > ${defaultLegendValue[0]}<div class= circle_legend id=circle_more_1000_k></div></span><br>`;
+        legendBlock.innerHTML += `<span class= circle_legend__cases id= 1000_k>${defaultLegendKey} < ${defaultLegendValue[0]}<div class= circle_legend id=circle_1000_k></div></span><br> `;
+        legendBlock.innerHTML += `<span class= circle_legend__cases id= 500_k>${defaultLegendKey} > ${defaultLegendValue[1]}<div class= circle_legend id=circle_500_k></div></span><br> `;
+        legendBlock.innerHTML += `<span class= circle_legend__cases id= 100_k>${defaultLegendKey} > ${defaultLegendValue[2]}<div class= circle_legend id=circle_100_k></div></span><br> `;
+        legendBlock.innerHTML += `<span class= circle_legend__cases id= 10_k>${defaultLegendKey} ${defaultLegendValue[3]}<div class= circle_legend id=circle_10_k></div></span><br> `;
 
         return legendBlock;
       };
