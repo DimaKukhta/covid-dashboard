@@ -60,6 +60,8 @@ export default class ChartCovid {
 
       // Configuration options go here
       options: {
+          responsive: true,
+          maintainAspectRatio: false,
         scales: {
           xAxes: [{
             ticks: {
