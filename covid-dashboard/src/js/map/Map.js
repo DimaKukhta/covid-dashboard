@@ -114,6 +114,17 @@ export default class Map {
         return correctHandeleRad;
       };
 
+      // this.hoverPopup = () => {
+      //   this.circle.on('mouseover', () => {
+      //     this.circle.openPopup();
+      //     console.log('on');
+      //   });
+      //   this.circle.on('mouseout', () => {
+      //     this.circle.closePopup();
+      //     console.log('off');
+      //   });
+      // };
+
       this.circlePaint = () => {
         this.circle = L.circle([lat, long], {
           color: this.circleBorderColor,
@@ -126,8 +137,19 @@ export default class Map {
           correctLegendRadius(),
         ).addTo(this.mymap);
         this.circle.bindPopup(`${key.toUpperCase().bold()} - Cases: ${cases}.  Deaths: ${deaths}.\n<br> Recover: ${recovered}`);
+        (this.circleHver = () => {
+          this.circle.on('mouseover', () => {
+            this.circle.openPopup();
+            console.log('on');
+          });
+          this.circle.on('mouseout', () => {
+            this.circle.closePopup();
+            console.log('off');
+          })();
+        });
       };
       setTimeout(this.circlePaint, 1200);
+      // setTimeout(this.hoverPopup, 5000);
     });
   }
 
