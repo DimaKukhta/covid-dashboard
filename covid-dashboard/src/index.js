@@ -5,6 +5,7 @@ import Map from './js/map/Map.js';
 import './style/style.css';
 import Table from './js/table/table';
 import List from './js/list/List';
+// eslint-disable-next-line import/no-named-as-default-member
 import ChartCovid from './js/chart/Chart';
 
 controlPanel.fillControlPanelData();
@@ -40,12 +41,11 @@ filters.addEventListener('click', ({ target }) => {
 });
 // List end
 
-// Start Chart 
-
-chart = new ChartCovid();
-
-
+// Start Chart
+const chart = new ChartCovid();
+console.log('chart')
 // End Chart
+
 // Resize buttons
 
 function resizeBlock({ target }) {
