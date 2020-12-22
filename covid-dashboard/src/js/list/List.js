@@ -3,6 +3,7 @@
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
+import addSpaceDelimiter from '../utils/addSpaceDelimiter';
 
 function sortListBy(array, filter) {
   // [1] need to sort list by country object
@@ -19,8 +20,9 @@ export default class List {
       const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
         let count = summary[country][filter];
+        console.log(count, typeof count);
         if (count === null) count = 'no info';
-        const countElem = createElement('span', 'list-countries--filter', `${count}`);
+        const countElem = createElement('span', 'list-countries--filter', `${addSpaceDelimiter(count)}`);
         const countryElem = createElement('div', 'list-countries--country', country);
         const flagSrc = (country === 'Global')
           ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
@@ -31,6 +33,8 @@ export default class List {
       });
     });
   }
+  // `${addSpaceDelimiter(count)}`
+  // `${count}`
 
   createList(filter = 'cases') {
     const parent = document.querySelector('.list');
