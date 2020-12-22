@@ -47,7 +47,7 @@ export default class Map {
       }
       if (this.keyMapCircleRadius === 'recovered') {
         [, , defaultLegendKey] = filter;
-        defaultLegendValue = ['1.000.000', '100.000', '1.000', '1-1000'];
+        defaultLegendValue = ['10.000.000', '1.000.000', '100.000', '1-10000'];
       }
       legend.onAdd = (/* map */) => {
         const legendBlock = document.createElement('div');
