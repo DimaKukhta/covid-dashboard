@@ -13,6 +13,8 @@ const list = new List();
 const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
+// Map init
+let map = new Map('cases_col', 'red', 'red');
 // Table start
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
@@ -35,6 +37,19 @@ const filters = document.querySelector('.button-filters');
 filters.addEventListener('click', ({ target }) => {
   if (target.classList.contains('button-active')) {
     list.updateList(target.id);
+  }
+  // map
+  if (target.id === 'cases') {
+    map.removeCircles();
+    map = new Map('cases_col', 'red', 'red');
+  }
+  if (target.id === 'deaths') {
+    map.removeCircles();
+    map = new Map('deaths_col', '#0000006b', 'red');
+  }
+  if (target.id === 'recovered') {
+    map.removeCircles();
+    map = new Map('recovered_col', ' #2b912b6b', '#70a800');
   }
 });
 // List end

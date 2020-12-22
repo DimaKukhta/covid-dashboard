@@ -30,9 +30,9 @@ export default class Map {
         accessToken: 'pk.eyJ1IjoiYXJ0ZW1vc2QiLCJhIjoiY2tpcTdieWdxMXRyazJ5cWo5OG0zenhzcCJ9.N-aBN7weDatXK0LtA_7Flw',
       }).addTo(this.mymap);
 
-      this.legend = L.control({ position: 'topright' });
+      const legend = L.control({ position: 'topright' });
 
-      this.legend.onAdd = (/* map */) => {
+      legend.onAdd = (/* map */) => {
         const legendBlock = document.createElement('div');
         legendBlock.classList.add('legend');
         legendBlock.innerHTML += '<h3 class= lagend_head id= lagend_head__ID>Legend</h3>';
@@ -45,7 +45,7 @@ export default class Map {
         return legendBlock;
       };
 
-      this.legend.addTo(this.mymap);
+      legend.addTo(this.mymap);
     };
     setTimeout(this.mapPaint, 250);
   }
@@ -60,6 +60,7 @@ export default class Map {
       const { long } = value;
       const { cases } = value;
       const { deaths } = value;
+      const { recovered } = value;
       const defaultCircleRadius = Math.floor(cases / radiusCorrection);
 
       if (!lat || !long) { return; }
@@ -96,10 +97,14 @@ export default class Map {
         }).setRadius(
           correctLegendRadius(),
         ).addTo(this.mymap);
-        this.circle.bindPopup(`${key.toUpperCase().bold()} - Cases: ${cases}.  Deaths: ${deaths}.`);
+        this.circle.bindPopup(`${key.toUpperCase().bold()} - Cases: ${cases}.  Deaths: ${deaths}.\n<br> Recover: ${recovered}`);
       };
       setTimeout(this.circlePaint, 1200);
     });
+  }
+
+  removeCircles() {
+    this.mymap.remove(this);
   }
 
   initLegend() {
@@ -131,5 +136,4 @@ export default class Map {
 // eslint-disable-next-line no-new
 // new Map('deaths_col', '#0000006b', 'red');
 // new Map('cases_col', 'red', 'red');
-new Map('recovered_col', ' #2b912b6b', '#70a800');
-
+// new Map('recovered_col', ' #2b912b6b', '#70a800');
