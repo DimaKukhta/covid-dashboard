@@ -17,7 +17,9 @@ const list = new List();
 const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
-// Table
+// Map init
+let map = new Map('cases_col', 'red', 'red');
+// Table start
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
 
@@ -55,6 +57,19 @@ filters.addEventListener('click', ({ target }) => {
       const country = document.querySelector('.table-info--country').textContent;
       table.updateTableInfo(country, isTotal, isAbsolute);
     }
+  }
+  // map
+  if (target.id === 'cases') {
+    map.removeCircles();
+    map = new Map('cases_col', 'red', 'red', 'cases');
+  }
+  if (target.id === 'deaths') {
+    map.removeCircles();
+    map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
+  }
+  if (target.id === 'recovered') {
+    map.removeCircles();
+    map = new Map('recovered_col', ' #2b912b6b', '#70a800', 'recovered');
   }
 });
 // List and Table update END
