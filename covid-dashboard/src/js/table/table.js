@@ -1,7 +1,9 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
-import data from '../api/gettersInfo';
+import getFilterPosition from '../utils/getFilterPosition';
+import { getCountriesAndGlobalInfo } from '../api/getApiData';
 
 export default class Table {
   constructor() {
@@ -30,30 +32,14 @@ export default class Table {
 
   updateTableInfo(country = 'Global', isTotal = true, isAbsolute = true) {
     this.thead.textContent = country;
-
-    if (isTotal === true && isAbsolute === true) {
-      data.getDiseaseCount(country).then((result) => this.casesValue.textContent = result);
-      data.getDeathCount(country).then((result) => this.deathsValue.textContent = result);
-      data.getRecoveryCount(country).then((result) => this.recoveredValue.textContent = result);
-    }
-
-    if (isTotal === false && isAbsolute === false) {
-      data.getDiseaseCount100LastDay(country).then((result) => this.casesValue.textContent = result);
-      data.getDeathCount100LastDay(country).then((result) => this.deathsValue.textContent = result);
-      data.getRecoveryCount100LastDay(country).then((result) => this.recoveredValue.textContent = result);
-    }
-
-    if (isTotal === true && isAbsolute === false) {
-      data.getDiseaseCount100(country).then((result) => this.casesValue.textContent = result);
-      data.getDeathCount100(country).then((result) => this.deathsValue.textContent = result);
-      data.getRecoveryCount100(country).then((result) => this.recoveredValue.textContent = result);
-    }
-
-    if (isTotal === false && isAbsolute === true) {
-      data.getDiseaseCountLastDay(country).then((result) => this.casesValue.textContent = result);
-      data.getDeathCountLastDay(country).then((result) => this.deathsValue.textContent = result);
-      data.getRecoveryCountLastDay(country).then((result) => this.recoveredValue.textContent = result);
-    }
+    getCountriesAndGlobalInfo().then((result) => {
+      const cases = result[country][getFilterPosition('cases', isTotal, isAbsolute)];
+      const deaths = result[country][getFilterPosition('deaths', isTotal, isAbsolute)];
+      const recovered = result[country][getFilterPosition('recovered', isTotal, isAbsolute)];
+      this.casesValue.textContent = (cases) ? cases : 'no info';
+      this.deathsValue.textContent = (deaths) ? deaths : 'no info';
+      this.recoveredValue.textContent = (recovered) ? recovered : 'no info';
+    });
   }
 
   renderIn(element) {

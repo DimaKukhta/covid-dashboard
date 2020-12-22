@@ -10,13 +10,13 @@
 .table {
   position: relative;
 
-  flex-basis: 250px;
+  flex-basis: 210px;
 }
 
 tr,
 td,
 th {
-  padding-left: 20px;  
+  padding-left: 10px;  
 
   border: 2px solid var(--color-text-white);
 }

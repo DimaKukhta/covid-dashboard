@@ -1,15 +1,41 @@
 @import './default.css';
 
+/* cases and data */
+
+.container-total-amount {
+  display: inline;
+  padding: 5px;
+
+  color: var(--color-highlight-white);
+
+  background: var(--color-bg-block);
+}
+
+.container-total-amount p {
+  text-align: center;
+}
+
+.total-amount {
+  color: var(--color-text-red);
+  font-size: 2rem;
+}
+
+.container-updated-date {
+  margin: 0.3rem;
+
+  text-align: center;
+
+  background: var(--color-bg-block);
+}
+
+.updated-date {
+  color: var(--color-highlight-white);
+  font-size: 1.2rem;
+}
 
 .list {
   position: relative;
 
-  display: flex;
-  flex-basis: 250px;
-
-  flex-direction: column;
-
-  max-height: 100%;
   overflow-y: scroll;
 
   font-size: 0.9rem;
@@ -42,8 +68,8 @@
 }
 
 .list-input {
-  width: 85%;
-  margin: 10px auto;
+  width: 82%;
+  margin: 10px;
   padding-left: 10px;
 
   font-size: 1.2rem;

@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
@@ -13,6 +14,24 @@ export default class List {
     this.createList();
   }
 
+  createListChildren(filter) {
+    getCountriesAndGlobalInfo().then((summary) => {
+      const sortedList = sortListBy(Object.entries(summary), filter);
+      sortedList.map(([country]) => {
+        let count = summary[country][filter];
+        if (count === null) count = 'no info';
+        const countElem = createElement('span', 'list-countries--filter', `${count}`);
+        const countryElem = createElement('div', 'list-countries--country', country);
+        const flagSrc = (country === 'Global')
+          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
+          : summary[country].flag;
+        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
+        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryFlag, countryElem], this.list, ['id', `${country}`]);
+        return this.listElem;
+      });
+    });
+  }
+
   createList(filter = 'cases') {
     const parent = document.querySelector('.list');
     this.input = createElement('input', 'list-input', null, parent, ['type', 'text'], ['placeholder', 'Search country']);
@@ -20,38 +39,12 @@ export default class List {
     this.input.addEventListener('input', this.searchCountry.bind(this));
 
     this.list = createElement('ul', 'list-countries');
-    getCountriesAndGlobalInfo().then((summary) => {
-      const sortedList = sortListBy(Object.entries(summary), filter);
-      sortedList.map(([country]) => {
-        const count = summary[country][filter];
-        const countElem = createElement('span', 'list-countries--filter', `${count}`);
-        const countryElem = createElement('div', 'list-countries--country', country);
-        const flagSrc = (country === 'Global')
-          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
-          : summary[country].flag;
-        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
-        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
-        return this.listElem;
-      });
-    });
+    this.createListChildren(filter);
   }
 
   updateList(filter) {
     this.list.innerHTML = '';
-    getCountriesAndGlobalInfo().then((summary) => {
-      const sortedList = sortListBy(Object.entries(summary), filter);
-      sortedList.map(([country]) => {
-        const count = summary[country][filter];
-        const countElem = createElement('span', 'list-countries--filter', `${count}`);
-        const countryElem = createElement('div', 'list-countries--country', country);
-        const flagSrc = (country === 'Global')
-          ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
-          : summary[country].flag;
-        const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
-        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
-        return this.listElem;
-      });
-    });
+    this.createListChildren(filter);
   }
 
   searchCountry() {
