@@ -30,7 +30,7 @@ table.renderIn(tableBlock);
 const filters = document.querySelector('.filters');
 const countriesList = document.querySelector('.list-countries');
 
-countriesList.addEventListener('click', function({ target }) {
+countriesList.addEventListener('click', function ({ target }) {
   if (target === this) return;
 
   const needTarget = target.closest('.list-countries--elem');
@@ -63,7 +63,7 @@ filters.addEventListener('click', ({ target }) => {
 
 // Start Chart
 const chart = new ChartCovid();
-console.log('chart')
+console.log('chart');
 // End Chart
 
 // Resize buttons
