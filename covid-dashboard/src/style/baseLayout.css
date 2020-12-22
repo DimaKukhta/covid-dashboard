@@ -83,6 +83,7 @@ main {
 
 }
 
+
 .container-table-chart {
 
   display: flex;
@@ -90,6 +91,7 @@ main {
   flex-grow: 3;
   max-height: 250px;
 }
+
 
 /* FOOTER */
 footer {
@@ -108,8 +110,13 @@ footer {
 
 .footer-text {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+.footer-text > *{
+  padding-right: 5px;
 }
 
 .footer-link {
