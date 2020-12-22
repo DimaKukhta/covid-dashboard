@@ -26,6 +26,16 @@ table.renderIn(tableBlock);
 
 // List and Table update START
 const filters = document.querySelector('.filters');
+const countriesList = document.querySelector('.list-countries');
+
+countriesList.addEventListener('click', function({ target }) {
+  if (target === this) return;
+
+  const needTarget = target.closest('.list-countries--elem');
+  const isTotal = radioGroup.querySelector('#totalCases').checked;
+  const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
+  table.updateTableInfo(needTarget.id, isTotal, isAbsolute);
+});
 
 filters.addEventListener('click', ({ target }) => {
   const isRadio = target.dataset.radio === 'true';
