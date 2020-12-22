@@ -1,5 +1,6 @@
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
 import addSpaceDelimiter from '../utils/addSpaceDelimiter';
+import disableBtnForMs from '../utils/disableBtnForMs';
 
 function fillControlPanelData() {
   const totalAmount = document.querySelector('#totalAmount');
@@ -33,6 +34,9 @@ function toggleLogic() {
       target.classList.add('button-active');
     }
   }
+  filters.addEventListener('click', () => {
+    disableBtnForMs(Array.from(filters.children), 2700);
+  });
   filters.addEventListener('click', toggleFilter);
 }
 
