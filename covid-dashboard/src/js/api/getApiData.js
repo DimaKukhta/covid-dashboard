@@ -34,12 +34,12 @@ async function getCountriesData() {
       cases,
       deaths,
       recovered,
-      casesPer100: +((cases * 100000) / population).toFixed(2),
-      deathsPer100: +((deaths * 100000) / population).toFixed(2),
-      recoveredPer100: +((recovered * 100000) / population).toFixed(2),
-      todayCasesPer100: +((todayCases * 100000) / population).toFixed(2),
-      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(2),
-      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(2),
+      casesPer100: +((cases * 100000) / population).toFixed(3),
+      deathsPer100: +((deaths * 100000) / population).toFixed(3),
+      recoveredPer100: +((recovered * 100000) / population).toFixed(3),
+      todayCasesPer100: +((todayCases * 100000) / population).toFixed(3),
+      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(3),
+      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(3),
       todayCases,
       todayDeaths,
       todayRecovered,
@@ -69,12 +69,12 @@ async function getGlobalData() {
       cases,
       deaths,
       recovered,
-      casesPer100: +((cases * 100000) / population).toFixed(2),
-      deathsPer100: +((deaths * 100000) / population).toFixed(2),
-      recoveredPer100: +((recovered * 100000) / population).toFixed(2),
-      todayCasesPer100: +((todayCases * 100000) / population).toFixed(2),
-      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(2),
-      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(2),
+      casesPer100: +((cases * 100000) / population).toFixed(3),
+      deathsPer100: +((deaths * 100000) / population).toFixed(3),
+      recoveredPer100: +((recovered * 100000) / population).toFixed(3),
+      todayCasesPer100: +((todayCases * 100000) / population).toFixed(3),
+      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(3),
+      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(3),
       todayCases,
       todayDeaths,
       todayRecovered,
@@ -90,7 +90,7 @@ export async function getCountriesAndGlobalInfo() {
 
   const summaryData = Object.assign(countriesData, globalData);
   // just for control
-  console.log(JSON.stringify(summaryData, null, 2));
+  // console.log(JSON.stringify(summaryData, null, 2));
   return summaryData;
 }
 

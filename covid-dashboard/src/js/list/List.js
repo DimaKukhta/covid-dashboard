@@ -24,7 +24,7 @@ export default class List {
           ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'
           : summary[country].flag;
         const countryFlag = createElement('img', 'list-countries--flag', null, null, ['src', `${flagSrc}`]);
-        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryElem, countryFlag], this.list, ['id', `${country}`]);
+        this.listElem = createElement('li', 'list-countries--elem', [countElem, countryFlag, countryElem], this.list, ['id', `${country}`]);
         return this.listElem;
       });
     });

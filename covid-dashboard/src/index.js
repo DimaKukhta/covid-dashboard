@@ -4,55 +4,51 @@ import getFilterPosition from './js/utils/getFilterPosition';
 import controlPanel from './js/controlPanel/controlPanel';
 import Map from './js/map/Map.js';
 import './style/style.css';
-import Table from './js/table/table';
+import Table from './js/table/Table';
 import List from './js/list/List';
 
+// Control panel START
 controlPanel.fillControlPanelData();
 controlPanel.toggleLogic();
+// Control panel END
 
 const list = new List();
 const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
-// Table start
+// Table
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
 
 const table = new Table();
 table.renderIn(tableBlock);
 
-// radioGroup.addEventListener('click', () => {
-//   const isTotal = radioGroup.querySelector('#totalCases').checked;
-//   const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
-
-//   // country will change when List will be implemented;
-//   table.updateTableInfo('Global', isTotal, isAbsolute);
-// });
-// Table end
-
-// List start
+// List and Table update START
 const filters = document.querySelector('.filters');
 
 filters.addEventListener('click', ({ target }) => {
-//  console.log(target.parentElement.tagName);
-  const isFilter = target.classList.contains('button-active') || target.parentElement.tagName === 'P' || false;
-  if (isFilter) {
-    // filters position
-    const isTotal = radioGroup.querySelector('#totalCases').checked;
-    const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
-    const filterBtn = filters.querySelector('.button-active').id;
+  const isRadio = target.dataset.radio === 'true';
+  const isFilter = target.classList.contains('button-active') || false;
 
+  // filters position
+  const isTotal = radioGroup.querySelector('#totalCases').checked;
+  const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
+
+  if (isRadio) {
     // table update
     // country will change when List will be implemented;
     table.updateTableInfo('Global', isTotal, isAbsolute);
+  }
+
+  if (isFilter || isRadio) {
+    const filterBtn = filters.querySelector('.button-active').id;
 
     list.updateList(getFilterPosition(filterBtn, isTotal, isAbsolute));
   }
 });
-// List end
+// List and Table update END
 
-// Resize buttons
-
+// Resize buttons START
 function resizeBlock({ target }) {
   target.parentElement.classList.toggle('full-screen');
   target.classList.toggle('btn-active');
@@ -63,3 +59,4 @@ const arrayOfResizeBtns = Array.from(document.querySelectorAll('.resize-button')
 arrayOfResizeBtns.forEach((btn) => {
   btn.addEventListener('click', resizeBlock);
 });
+// Resize buttons END
