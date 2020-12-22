@@ -158,7 +158,7 @@ export default class Map {
         }
       });
     };
-    setTimeout(this.handlerInit, 1250);
+    setTimeout(this.handlerInit, 250);
   }
 }
 
