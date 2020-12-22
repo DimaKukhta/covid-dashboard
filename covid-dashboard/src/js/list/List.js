@@ -20,7 +20,6 @@ export default class List {
       const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
         let count = summary[country][filter];
-        console.log(count, typeof count);
         if (count === null) count = 'no info';
         const countElem = createElement('span', 'list-countries--filter', `${addSpaceDelimiter(count)}`);
         const countryElem = createElement('div', 'list-countries--country', country);
@@ -33,8 +32,6 @@ export default class List {
       });
     });
   }
-  // `${addSpaceDelimiter(count)}`
-  // `${count}`
 
   createList(filter = 'cases') {
     const parent = document.querySelector('.list');

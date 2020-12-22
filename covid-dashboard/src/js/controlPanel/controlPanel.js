@@ -1,4 +1,5 @@
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
+import addSpaceDelimiter from '../utils/addSpaceDelimiter';
 
 function fillControlPanelData() {
   const totalAmount = document.querySelector('#totalAmount');
@@ -16,7 +17,7 @@ function fillControlPanelData() {
 
     updatedDate.textContent = `${day}.${month}.${year} | ${hours}:${minutes}`;
 
-    totalAmount.textContent = Global.cases;
+    totalAmount.textContent = addSpaceDelimiter(Global.cases);
   });
 }
 
