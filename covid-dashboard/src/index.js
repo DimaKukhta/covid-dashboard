@@ -61,15 +61,15 @@ filters.addEventListener('click', ({ target }) => {
   // map
   if (target.id === 'cases') {
     map.removeCircles();
-    map = new Map('cases_col', 'red', 'red');
+    map = new Map('cases_col', 'red', 'red', 'cases');
   }
   if (target.id === 'deaths') {
     map.removeCircles();
-    map = new Map('deaths_col', '#0000006b', 'red');
+    map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
   }
   if (target.id === 'recovered') {
     map.removeCircles();
-    map = new Map('recovered_col', ' #2b912b6b', '#70a800');
+    map = new Map('recovered_col', ' #2b912b6b', '#70a800', 'recovered');
   }
 });
 // List and Table update END

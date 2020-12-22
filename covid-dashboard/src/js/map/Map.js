@@ -7,7 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import covidPopulationFlagMock from '../mocks/covidPopulationFlagMock';
 
 export default class Map {
-  constructor(colorClass, fillColor, circleBorderColor) {
+  constructor(colorClass, fillColor, circleBorderColor, keyMapCircleRadius) {
+    this.keyMapCircleRadius = keyMapCircleRadius;
     this.circleBorderColor = circleBorderColor;
     this.fillColor = fillColor;
     this.color = colorClass;
@@ -53,34 +54,45 @@ export default class Map {
   circleParser() {
     console.log('init-circleParser');
 
-    const radiusCorrection = 10;
-
+    const radiusCorrection = 11;
+    const deathsRadiusCorrection = 55;
+    const recoveredRadiusCorrection = 1.2;
     Object.entries(covidPopulationFlagMock).forEach(([key, value]) => {
       const { lat } = value;
       const { long } = value;
       const { cases } = value;
       const { deaths } = value;
       const { recovered } = value;
-      const defaultCircleRadius = Math.floor(cases / radiusCorrection);
+      let defaultCircleRadius = Math.floor(cases / radiusCorrection);
+
+      if (this.keyMapCircleRadius === 'cases') {
+        defaultCircleRadius = Math.floor(cases / radiusCorrection);
+      }
+      if (this.keyMapCircleRadius === 'deaths') {
+        defaultCircleRadius = Math.floor(deaths / radiusCorrection) * deathsRadiusCorrection;
+      }
+      if (this.keyMapCircleRadius === 'recovered') {
+        defaultCircleRadius = Math.floor(recovered / radiusCorrection) * recoveredRadiusCorrection;
+      }
 
       if (!lat || !long) { return; }
 
       const correctLegendRadius = () => {
         // console.log(key, '--', defaultCircleRadius);
         let correctHandeleRad = defaultCircleRadius;
-        if (cases < 1000000) {
+        if (defaultCircleRadius < 1000000) {
           correctHandeleRad = 120000;
         }
-        if (cases < 500000) {
+        if (defaultCircleRadius < 500000) {
           correctHandeleRad = 90000;
         }
-        if (cases < 100000) {
+        if (defaultCircleRadius < 100000) {
           correctHandeleRad = 75000;
         }
-        if (cases < 50000) {
+        if (defaultCircleRadius < 50000) {
           correctHandeleRad = 60000;
         }
-        if (cases < 10000) {
+        if (defaultCircleRadius < 10000) {
           correctHandeleRad = 30000;
         }
         return correctHandeleRad;
@@ -112,9 +124,10 @@ export default class Map {
       console.log('init-Legend');
       this.legendHead = document.getElementById('lagend_head__ID');
       this.legendInnerCircle = document.querySelectorAll('.circle_legend');
+
       this.legendInnerCircle.forEach((el) => el.classList.add(this.color));
+
       this.legendHead.addEventListener('mouseover', (event) => {
-        // console.log(event.target.id);
         if (event.target.id === 'lagend_head__ID') {
           this.legendInnerText = document.querySelectorAll('.circle_legend__cases').forEach((element) => {
             element.classList.add('show_tex');
