@@ -2,7 +2,7 @@
 const urlCovidBase = 'https://disease.sh/v3/covid-19';
 
 async function fetchCountriesData() {
-  const urlCountries = `${urlCovidBase}/countries`;
+  const urlCountries = `${urlCovidBase}/countries?allowNull=true`;
   return fetch(urlCountries).then((result) => result.json());
 }
 
@@ -34,12 +34,20 @@ async function getCountriesData() {
       cases,
       deaths,
       recovered,
-      casesPer100: +((cases * 100000) / population).toFixed(3),
-      deathsPer100: +((deaths * 100000) / population).toFixed(3),
-      recoveredPer100: +((recovered * 100000) / population).toFixed(3),
-      todayCasesPer100: +((todayCases * 100000) / population).toFixed(3),
-      todayDeathsPer100: +((todayDeaths * 100000) / population).toFixed(3),
-      todayRecoveredPer100: +((todayRecovered * 100000) / population).toFixed(3),
+      casesPer100: (cases && population) ? +((cases * 100000) / population).toFixed(3) : null,
+      deathsPer100: (deaths && population) ? +((deaths * 100000) / population).toFixed(3) : null,
+      recoveredPer100: (recovered && population)
+        ? +((recovered * 100000) / population).toFixed(3)
+        : null,
+      todayCasesPer100: (todayCases && population)
+        ? +((todayCases * 100000) / population).toFixed(3)
+        : null,
+      todayDeathsPer100: (todayDeaths && population)
+        ? +((todayDeaths * 100000) / population).toFixed(3)
+        : null,
+      todayRecoveredPer100: (todayRecovered && population)
+        ? +((todayRecovered * 100000) / population).toFixed(3)
+        : null,
       todayCases,
       todayDeaths,
       todayRecovered,

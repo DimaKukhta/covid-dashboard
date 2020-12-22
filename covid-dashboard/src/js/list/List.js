@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
@@ -17,7 +18,9 @@ export default class List {
     getCountriesAndGlobalInfo().then((summary) => {
       const sortedList = sortListBy(Object.entries(summary), filter);
       sortedList.map(([country]) => {
-        const count = summary[country][filter];
+        // const summaryObj = JSON.parse(JSON.stringify(summary));
+        let count = summary[country][filter];
+        if (count === null) count = 'no info';
         const countElem = createElement('span', 'list-countries--filter', `${count}`);
         const countryElem = createElement('div', 'list-countries--country', country);
         const flagSrc = (country === 'Global')
