@@ -40,7 +40,7 @@ export default class ChartCovid {
         getHistoricInfo('Global').then(({ filter }) => {
             const [arrayOfLabels, arrayOfData] = Object.entries(filter);
             console.log('массив лейблов: ', arrayOfLabels, 'массив значений: ', arrayOfData);
-          });
+        });
         const ctx = document.getElementById('myChart').getContext('2d');
         const chart = new Chart(ctx, {
             // The type of chart we want to create

@@ -59,7 +59,6 @@ filters.addEventListener('click', ({ target }) => {
     }
   }
 });
-<<<<<<< HEAD
 // List end
 
 // Start Chart
@@ -68,9 +67,8 @@ console.log('chart')
 // End Chart
 
 // Resize buttons
-=======
+
 // List and Table update END
->>>>>>> develop
 
 // Resize buttons START
 function resizeBlock({ target }) {
