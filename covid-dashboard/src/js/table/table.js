@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 /* eslint-disable max-len */
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
@@ -32,9 +33,12 @@ export default class Table {
   updateTableInfo(country = 'Global', isTotal = true, isAbsolute = true) {
     this.thead.textContent = country;
     getCountriesAndGlobalInfo().then((result) => {
-      this.casesValue.textContent = result[country][getFilterPosition('cases', isTotal, isAbsolute)];
-      this.deathsValue.textContent = result[country][getFilterPosition('deaths', isTotal, isAbsolute)];
-      this.recoveredValue.textContent = result[country][getFilterPosition('recovered', isTotal, isAbsolute)];
+      const cases = result[country][getFilterPosition('cases', isTotal, isAbsolute)];
+      const deaths = result[country][getFilterPosition('deaths', isTotal, isAbsolute)];
+      const recovered = result[country][getFilterPosition('recovered', isTotal, isAbsolute)];
+      this.casesValue.textContent = (cases) ? cases : 'no info';
+      this.deathsValue.textContent = (deaths) ? deaths : 'no info';
+      this.recoveredValue.textContent = (recovered) ? recovered : 'no info';
     });
   }
 

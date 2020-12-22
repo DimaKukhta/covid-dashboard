@@ -52,8 +52,8 @@ filters.addEventListener('click', ({ target }) => {
 
     if (isRadio) {
       // table update
-      // country will change when List will be implemented;
-      table.updateTableInfo('Global', isTotal, isAbsolute);
+      const country = document.querySelector('.table-info--country').textContent;
+      table.updateTableInfo(country, isTotal, isAbsolute);
     }
   }
 });
