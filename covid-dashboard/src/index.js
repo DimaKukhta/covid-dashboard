@@ -26,24 +26,27 @@ let map = new Map('cases_col', '#2492f283', '#2493f2', 'cases');
 const myChart = new ChartCovid();
 let countryNow = 'Global';
 
-// Table start
+// Table init
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
 
 const table = new Table();
 table.renderIn(tableBlock);
 
-// List and Table update START
+// List, Table, Map, Chart update START
 const filters = document.querySelector('.filters');
 const countriesList = document.querySelector('.list-countries');
 
 countriesList.addEventListener('click', function ({ target }) {
+  // update Table
   if (target === this) return;
 
   const needTarget = target.closest('.list-countries--elem');
   const isTotal = radioGroup.querySelector('#totalCases').checked;
   const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
   table.updateTableInfo(needTarget.id, isTotal, isAbsolute);
+
+  // work with Chart
   countryNow = `${needTarget.id}`;
   myChart.removeData();
   const filterBtn = filters.querySelector('.button-active').id;
@@ -51,6 +54,7 @@ countriesList.addEventListener('click', function ({ target }) {
 });
 
 filters.addEventListener('click', ({ target }) => {
+  // update List
   const isRadio = target.dataset.radio === 'true';
   const isFilter = target.classList.contains('button-active');
 
@@ -69,31 +73,32 @@ filters.addEventListener('click', ({ target }) => {
       table.updateTableInfo(country, isTotal, isAbsolute);
     }
   }
-  // map
+  // update map
   if (target.id === 'cases') {
     map.removeCircles();
     map = new Map('cases_col', '#2492f283', '#2493f2', 'cases');
+    // update chart
     myChart.removeData();
     myChart.addData(countryNow, 'cases');
   }
 
   if (target.id === 'deaths') {
+    // update map
     map.removeCircles();
     map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
+    // update chart
     myChart.removeData();
     myChart.addData(countryNow, 'deaths');
   }
   if (target.id === 'recovered') {
+    // update map
     map.removeCircles();
     map = new Map('recovered_col', ' #2b912b6b', '#70a800', 'recovered');
+    // update chart
     myChart.removeData();
     myChart.addData(countryNow, 'recovered');
   }
 });
-// List end
-
-// Resize buttons
-
 // List and Table update END
 
 // Resize buttons START
@@ -108,3 +113,26 @@ arrayOfResizeBtns.forEach((btn) => {
   btn.addEventListener('click', resizeBlock);
 });
 // Resize buttons END
+
+// change country by map clicking...
+const mapElem = document.querySelector('.map');
+
+mapElem.addEventListener('click', ({ target }) => {
+  const closeBtn = mapElem.querySelector('.leaflet-popup-close-button');
+  if (closeBtn) closeBtn.click();
+
+  setTimeout(() => {
+    if (target.classList.contains('leaflet-interactive')) {
+      // toggle position
+      const isTotal = radioGroup.querySelector('#totalCases').checked;
+      const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
+
+      const popupContainer = mapElem.querySelector('.leaflet-popup-pane');
+
+      setTimeout(() => {
+        const countryName = popupContainer.querySelector('b').textContent;
+        table.updateTableInfo(countryName, isTotal, isAbsolute);
+      }, 100);
+    }
+  }, 100);
+});
