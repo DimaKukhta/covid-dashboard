@@ -18,16 +18,23 @@ function getDataTest(context) {
   }
   return value;
 }
-/*
-async function getLabels() {
-  const result = await getHistoricInfo('Global');
+async function getLabels(country, context) {
+  const result = await getHistoricInfo(country);
   const value = [];
-  for (const key in result.cases) {
-    value.push(result.cases[key]);
+  for (let key in result[context]) {
+    value.push(key);
   }
   return value;
 }
-
+async function getData(country, context) {
+  const result = await getHistoricInfo(country);
+  const value = [];
+  for (let key in result[context]) {
+    value.push(result[context][key]);
+  }
+  return value;
+}
+/*
 function getData() {
   getHistoricInfo('Global').then((result) => {
     const value = [];
@@ -43,19 +50,19 @@ export default class ChartCovid {
     this.createChart();
   }
 
-  createChart() {
+  async createChart() {
     const ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
       // The type of chart we want to create
       type: 'line',
       // The data for our dataset
       data: {
-        labels: getDataTest('cases'),
+        labels: await getLabels('Global', 'cases'),
         datasets: [{
           label: 'Global',
-          backgroundColor: 'rgb(230, 0, 0)',
+          backgroundColor: 'rgba(230, 0, 0, 0.5)',
           borderColor: 'rgb(230, 0, 0)',
-          data: getLabelsTest('cases'),
+          data: await getData('Global', 'cases'),
         }],
       },
 
@@ -82,16 +89,9 @@ export default class ChartCovid {
     this.chart.data.labels = [];
     this.chart.update();
   };
-  addData(context) {
-    this.chart.data.labels = getDataTest(context);
-    this.chart.data.datasets[0].data = getLabelsTest(context)
+  async addData(counrty, context) {
+    this.chart.data.labels = await getLabels(counrty, context);
+    this.chart.data.datasets[0].data = await getData(counrty, context)
     this.chart.update()
   }
-}
-function removeData(chart) {
-  chart.data.labels.pop();
-  chart.data.datasets.forEach((dataset) => {
-    dataset.data.pop();
-  });
-  chart.update();
 }

@@ -24,6 +24,7 @@ let map = new Map('cases_col', 'red', 'red');
 
 // Chart init
 const myChart = new ChartCovid();
+let countryNow = 'Global';
 
 // Table start
 const tableBlock = document.querySelector('#table');
@@ -43,6 +44,10 @@ countriesList.addEventListener('click', function ({ target }) {
   const isTotal = radioGroup.querySelector('#totalCases').checked;
   const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
   table.updateTableInfo(needTarget.id, isTotal, isAbsolute);
+  countryNow = `${needTarget.id}`;
+  myChart.removeData();
+  const filterBtn = filters.querySelector('.button-active').id;
+  myChart.addData(countryNow, getFilterPosition(filterBtn, true, true));
 });
 
 filters.addEventListener('click', ({ target }) => {
@@ -69,19 +74,19 @@ filters.addEventListener('click', ({ target }) => {
     map.removeCircles();
     map = new Map('cases_col', 'red', 'red', 'cases');
     myChart.removeData();
-    myChart.addData('cases');
+    myChart.addData(countryNow, 'cases');
   }
   if (target.id === 'deaths') {
     map.removeCircles();
     map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
     myChart.removeData();
-    myChart.addData('deaths');
+    myChart.addData(countryNow, 'deaths');
   }
   if (target.id === 'recovered') {
     map.removeCircles();
     map = new Map('recovered_col', ' #2b912b6b', '#70a800', 'recovered');
     myChart.removeData();
-    myChart.addData('recovered');
+    myChart.addData(countryNow, 'recovered');
   }
 });
 // List end
