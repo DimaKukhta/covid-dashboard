@@ -105,6 +105,7 @@ filters.addEventListener('click', ({ target }) => {
 function resizeBlock({ target }) {
   target.parentElement.classList.toggle('full-screen');
   target.classList.toggle('btn-active');
+  document.body.width = `${parseFloat(window.getComputedStyle(document.body).width) - 10}px`;
 }
 
 const arrayOfResizeBtns = Array.from(document.querySelectorAll('.resize-button'));
@@ -141,11 +142,12 @@ function calcCanvasWidth() {
   const canvasElem = document.querySelector('#myChart');
   const list1 = document.querySelector('#list');
   const table1 = document.querySelector('#table');
-  const listWidth = window.getComputedStyle(list1).width;
-  const tableWidth = window.getComputedStyle(table1).width;
-  const bodyWidth = window.getComputedStyle(document.body).width;
-  canvasElem.style.width = `${bodyWidth - listWidth - tableWidth}px`;
-  console.log(listWidth, tableWidth, bodyWidth);
+  const listWidth = parseFloat(window.getComputedStyle(list1).width);
+  const tableWidth = parseFloat(window.getComputedStyle(table1).width);
+  const bodyWidth = parseFloat(window.getComputedStyle(document.body).width);
+
+  const calcWidth = bodyWidth - listWidth - tableWidth - 60;
+  canvasElem.style.width = `${calcWidth}px`;
 }
 
 window.addEventListener('resize', calcCanvasWidth);
