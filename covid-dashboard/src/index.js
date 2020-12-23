@@ -87,22 +87,25 @@ arrayOfResizeBtns.forEach((btn) => {
 });
 // Resize buttons END
 
-// change country by map clicking
+// change country by map clicking...
 const mapElem = document.querySelector('.map');
 
 mapElem.addEventListener('click', ({ target }) => {
-  // target.click();
-  if (target.classList.contains('leaflet-interactive')) {
-    // toggle position
-    const isTotal = radioGroup.querySelector('#totalCases').checked;
-    const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
+  const closeBtn = mapElem.querySelector('.leaflet-popup-close-button');
+  if (closeBtn) closeBtn.click();
 
-    const popupContainer = mapElem.querySelector('.leaflet-popup-pane');
+  setTimeout(() => {
+    if (target.classList.contains('leaflet-interactive')) {
+      // toggle position
+      const isTotal = radioGroup.querySelector('#totalCases').checked;
+      const isAbsolute = radioGroup.querySelector('#inAbsoluteNumbers').checked;
 
-    // let countryName;
-    setTimeout(() => {
-      const countryName = popupContainer.querySelector('b').textContent;
-      table.updateTableInfo(countryName, isTotal, isAbsolute);
-    }, 100);
-  }
+      const popupContainer = mapElem.querySelector('.leaflet-popup-pane');
+
+      setTimeout(() => {
+        const countryName = popupContainer.querySelector('b').textContent;
+        table.updateTableInfo(countryName, isTotal, isAbsolute);
+      }, 100);
+    }
+  }, 100);
 });
