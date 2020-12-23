@@ -36,6 +36,8 @@
 .list {
   position: relative;
 
+  height: 100%;
+
   overflow-y: scroll;
 
   font-size: 0.9rem;
