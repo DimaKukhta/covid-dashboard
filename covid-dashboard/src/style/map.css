@@ -64,8 +64,8 @@
 }
 
 .recovered_col {
-    border: var(--color-text-green) 2px solid;
     background-color: rgba(0, 128, 0, 0.301);
+    border: var(--color-text-green) 2px solid;
 }
 
 .cases_col {
@@ -73,8 +73,8 @@
 }
 
 .deaths_col {
-    border: var(--color-text-red) 2px solid;
     background-color: var(--color-deaths-map);
+    border: var(--color-text-red) 2px solid;
 }
 
 .map {

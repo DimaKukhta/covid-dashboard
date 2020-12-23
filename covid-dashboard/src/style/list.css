@@ -16,7 +16,7 @@
 }
 
 .total-amount {
-  color: var(--color-text-red);
+  color: var(--color-text-blue);
   font-size: 2rem;
 }
 
@@ -75,8 +75,16 @@
   font-size: 1.2rem;
 }
 
-.list-countries--filter {
+.color-blue {
+  color: var(--color-text-blue);
+}
+
+.color-red {
   color: var(--color-text-red);
+}
+
+.color-green {
+  color: var(--color-text-green);
 }
 
 .list-countries--country {
