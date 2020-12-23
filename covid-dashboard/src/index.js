@@ -105,6 +105,7 @@ filters.addEventListener('click', ({ target }) => {
 function resizeBlock({ target }) {
   target.parentElement.classList.toggle('full-screen');
   target.classList.toggle('btn-active');
+  window.dispatchEvent(new Event('resize'));
 }
 
 const arrayOfResizeBtns = Array.from(document.querySelectorAll('.resize-button'));
@@ -140,3 +141,17 @@ mapElem.addEventListener('click', ({ target }) => {
     }
   }, 100);
 });
+
+function calcCanvasWidth() {
+  const canvasElem = document.querySelector('#myChart');
+  const list1 = document.querySelector('#list');
+  const table1 = document.querySelector('#table');
+  const listWidth = parseFloat(window.getComputedStyle(list1).width);
+  const tableWidth = parseFloat(window.getComputedStyle(table1).width);
+  const bodyWidth = parseFloat(window.getComputedStyle(document.body).width);
+
+  const calcWidth = bodyWidth - listWidth - tableWidth - 60;
+  canvasElem.style.width = `${calcWidth}px`;
+}
+
+window.addEventListener('resize', calcCanvasWidth);
