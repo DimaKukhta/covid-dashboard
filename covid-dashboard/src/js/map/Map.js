@@ -4,7 +4,7 @@
  */
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import covidPopulationFlagMock from '../mocks/covidPopulationFlagMock';
+import { getCountriesAndGlobalInfo } from '../api/getApiData';
 
 export default class Map {
   constructor(colorClass, fillColor, circleBorderColor, keyMapCircleRadius) {
@@ -12,6 +12,7 @@ export default class Map {
     this.circleBorderColor = circleBorderColor;
     this.fillColor = fillColor;
     this.color = colorClass;
+
     this.mapParser();
     this.circleParser();
     this.initLegend();
@@ -34,8 +35,6 @@ export default class Map {
       const legend = L.control({ position: 'topright' });
       const filter = ['Cases', 'Deaths', 'Recovered'];
       let defaultLegendValue = ['1.000.000', '500.000', '100.000', '10.000'];
-      // const deathsLegendValue = ['1.000.000', '500.000', '100.000', '10.000'];
-      // const recoveredLegendValue = ['1.000.000', '100.000', '1.000', '1-1000'];
 
       let defaultLegendKey = filter[0];
       if (this.keyMapCircleRadius === 'cases') {
@@ -68,71 +67,73 @@ export default class Map {
   }
 
   circleParser() {
-    console.log('init-circleParser');
+    // console.log('init-circleParser');
 
     const radiusCorrection = 11;
     const deathsRadiusCorrection = 75;
-    const recoveredRadiusCorrection = 1.2;
-    Object.entries(covidPopulationFlagMock).forEach(([key, value]) => {
-      const { lat } = value;
-      const { long } = value;
-      const { cases } = value;
-      const { deaths } = value;
-      const { recovered } = value;
-      let defaultCircleRadius = Math.floor(cases / radiusCorrection);
+    const recoveredRadiusCorection = 1.2;
+    getCountriesAndGlobalInfo().then((prom) => {
+      Object.entries(prom).forEach(([key, value]) => {
+        const { lat } = value;
+        const { long } = value;
+        const { cases } = value;
+        const { deaths } = value;
+        const { recovered } = value;
 
-      if (this.keyMapCircleRadius === 'cases') {
-        defaultCircleRadius = Math.floor(cases / radiusCorrection);
-      }
-      if (this.keyMapCircleRadius === 'deaths') {
-        defaultCircleRadius = Math.floor(deaths / radiusCorrection) * deathsRadiusCorrection;
-      }
-      if (this.keyMapCircleRadius === 'recovered') {
-        defaultCircleRadius = Math.floor(recovered / radiusCorrection) * recoveredRadiusCorrection;
-      }
+        let defaultCircleRadius = Math.floor(cases / radiusCorrection);
 
-      if (!lat || !long) { return; }
+        if (this.keyMapCircleRadius === 'cases') {
+          defaultCircleRadius = Math.floor(cases / radiusCorrection);
+        }
+        if (this.keyMapCircleRadius === 'deaths') {
+          defaultCircleRadius = Math.floor(deaths / radiusCorrection) * deathsRadiusCorrection;
+        }
+        if (this.keyMapCircleRadius === 'recovered') {
+          defaultCircleRadius = Math.floor(recovered / radiusCorrection) * recoveredRadiusCorection;
+        }
 
-      const correctLegendRadius = () => {
+        if (!lat || !long) { return; }
+
+        const correctLegendRadius = () => {
         // console.log(key, '--', defaultCircleRadius);
-        let correctHandeleRad = defaultCircleRadius;
-        if (defaultCircleRadius > 900000) {
-          correctHandeleRad = 600000;
-        }
-        if (defaultCircleRadius < 900000) {
-          correctHandeleRad = 120000;
-        }
-        if (defaultCircleRadius < 500000) {
-          correctHandeleRad = 90000;
-        }
-        if (defaultCircleRadius < 100000) {
-          correctHandeleRad = 75000;
-        }
-        if (defaultCircleRadius < 50000) {
-          correctHandeleRad = 60000;
-        }
-        if (defaultCircleRadius < 10000) {
-          correctHandeleRad = 30000;
-        }
-        return correctHandeleRad;
-      };
+          let correctHandeleRad = defaultCircleRadius;
+          if (defaultCircleRadius > 900000) {
+            correctHandeleRad = 600000;
+          }
+          if (defaultCircleRadius < 900000) {
+            correctHandeleRad = 120000;
+          }
+          if (defaultCircleRadius < 500000) {
+            correctHandeleRad = 90000;
+          }
+          if (defaultCircleRadius < 100000) {
+            correctHandeleRad = 75000;
+          }
+          if (defaultCircleRadius < 50000) {
+            correctHandeleRad = 60000;
+          }
+          if (defaultCircleRadius < 10000) {
+            correctHandeleRad = 30000;
+          }
+          return correctHandeleRad;
+        };
 
-      this.circlePaint = () => {
-        this.circle = L.circle([lat, long], {
-          color: this.circleBorderColor,
-          fillColor: this.fillColor,
-          fillOpacity: 0.4,
-          opacity: 0.7,
-          radius: 500,
-          bubblingMouseEvents: true,
+        this.circlePaint = () => {
+          this.circle = L.circle([lat, long], {
+            color: this.circleBorderColor,
+            fillColor: this.fillColor,
+            fillOpacity: 0.4,
+            opacity: 0.7,
+            radius: 500,
+            bubblingMouseEvents: true,
 
-        }).setRadius(
-          correctLegendRadius(),
-        ).addTo(this.mymap);
-        this.circle.bindPopup(`${key.bold()} - Cases: ${cases}.  Deaths: ${deaths}.\n<br> Recover: ${recovered}`);
-      };
-      setTimeout(this.circlePaint, 1200);
-      // setTimeout(this.hoverPopup, 5000);
+          }).setRadius(
+            correctLegendRadius(),
+          ).addTo(this.mymap);
+          this.circle.bindPopup(`${key.bold()} - Cases: ${cases}.  Deaths: ${deaths}.\n<br> Recover: ${recovered}`);
+        };
+        setTimeout(this.circlePaint, 1200);
+      });
     });
   }
 
@@ -142,7 +143,6 @@ export default class Map {
 
   initLegend() {
     this.handlerInit = () => {
-      console.log('init-Legend');
       this.legendHead = document.getElementById('lagend_head__ID');
       this.legendInnerCircle = document.querySelectorAll('.circle_legend');
 
@@ -166,8 +166,3 @@ export default class Map {
     setTimeout(this.handlerInit, 250);
   }
 }
-
-// eslint-disable-next-line no-new
-// new Map('deaths_col', '#0000006b', 'red');
-// new Map('cases_col', 'red', 'red');
-// new Map('recovered_col', ' #2b912b6b', '#70a800');
