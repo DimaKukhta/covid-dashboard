@@ -74,6 +74,13 @@ export default class ChartCovid {
         },
       },
     });
-    console.log('endfn');
+    this.chart = chart;
   }
+}
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
 }
