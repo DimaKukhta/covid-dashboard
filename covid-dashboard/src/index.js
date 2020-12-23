@@ -18,7 +18,7 @@ const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
 // Map init
-let map = new Map('cases_col', '#2492f283', '#2493f2');
+let map = new Map('cases_col', '#2492f283', '#2493f2', 'cases');
 // Table start
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
