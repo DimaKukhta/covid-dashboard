@@ -16,7 +16,7 @@
 }
 
 .total-amount {
-  color: var(--color-text-red);
+  color: var(--color-text-blue);
   font-size: 2rem;
 }
 
@@ -35,6 +35,8 @@
 
 .list {
   position: relative;
+
+  height: 100%;
 
   overflow-y: scroll;
 
@@ -59,7 +61,7 @@
 }
 
 .list-countries--elem:hover {
-  background-color: var(--color-text-blue);
+  background-color: var(--color-text-lila);
   cursor: pointer;  
 }
 
@@ -75,8 +77,16 @@
   font-size: 1.2rem;
 }
 
-.list-countries--filter {
+.color-blue {
+  color: var(--color-text-blue);
+}
+
+.color-red {
   color: var(--color-text-red);
+}
+
+.color-green {
+  color: var(--color-text-green);
 }
 
 .list-countries--country {

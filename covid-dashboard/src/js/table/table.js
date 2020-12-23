@@ -4,6 +4,7 @@
 import createElement from '../utils/createElement';
 import getFilterPosition from '../utils/getFilterPosition';
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
+import addSpaceDelimiter from '../utils/addSpaceDelimiter';
 
 export default class Table {
   constructor() {
@@ -36,9 +37,9 @@ export default class Table {
       const cases = result[country][getFilterPosition('cases', isTotal, isAbsolute)];
       const deaths = result[country][getFilterPosition('deaths', isTotal, isAbsolute)];
       const recovered = result[country][getFilterPosition('recovered', isTotal, isAbsolute)];
-      this.casesValue.textContent = (cases) ? cases : 'no info';
-      this.deathsValue.textContent = (deaths) ? deaths : 'no info';
-      this.recoveredValue.textContent = (recovered) ? recovered : 'no info';
+      this.casesValue.textContent = (cases) ? addSpaceDelimiter(cases) : 'no info';
+      this.deathsValue.textContent = (deaths) ? addSpaceDelimiter(deaths) : 'no info';
+      this.recoveredValue.textContent = (recovered) ? addSpaceDelimiter(recovered) : 'no info';
     });
   }
 

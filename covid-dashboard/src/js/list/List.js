@@ -3,10 +3,17 @@
 /* eslint-disable no-return-assign */
 import createElement from '../utils/createElement';
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
+import addSpaceDelimiter from '../utils/addSpaceDelimiter';
 
 function sortListBy(array, filter) {
   // [1] need to sort list by country object
   return array.sort((a, b) => b[1][filter] - a[1][filter]);
+}
+
+function defineColorClass(filter) {
+  if (filter.toLowerCase().includes('cases')) return 'color-blue';
+  if (filter.toLowerCase().includes('deaths')) return 'color-red';
+  if (filter.toLowerCase().includes('recovered')) return 'color-green';
 }
 
 export default class List {
@@ -20,7 +27,7 @@ export default class List {
       sortedList.map(([country]) => {
         let count = summary[country][filter];
         if (count === null) count = 'no info';
-        const countElem = createElement('span', 'list-countries--filter', `${count}`);
+        const countElem = createElement('span', `list-countries--filter ${defineColorClass(filter)}`, `${addSpaceDelimiter(count)}`);
         const countryElem = createElement('div', 'list-countries--country', country);
         const flagSrc = (country === 'Global')
           ? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg'

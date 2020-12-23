@@ -1,4 +1,6 @@
 import { getCountriesAndGlobalInfo } from '../api/getApiData';
+import addSpaceDelimiter from '../utils/addSpaceDelimiter';
+import disableBtnForMs from '../utils/disableBtnForMs';
 
 function fillControlPanelData() {
   const totalAmount = document.querySelector('#totalAmount');
@@ -16,7 +18,7 @@ function fillControlPanelData() {
 
     updatedDate.textContent = `${day}.${month}.${year} | ${hours}:${minutes}`;
 
-    totalAmount.textContent = Global.cases;
+    totalAmount.textContent = addSpaceDelimiter(Global.cases);
   });
 }
 
@@ -32,6 +34,9 @@ function toggleLogic() {
       target.classList.add('button-active');
     }
   }
+  filters.addEventListener('click', () => {
+    disableBtnForMs(Array.from(filters.children), 2700);
+  });
   filters.addEventListener('click', toggleFilter);
 }
 
