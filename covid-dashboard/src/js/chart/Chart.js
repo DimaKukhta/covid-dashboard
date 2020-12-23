@@ -49,6 +49,10 @@ export default class ChartCovid {
           text: 'Global',
           fontColor: '#ffffff',
         },
+        tooltips: {
+          intersect: false,
+          label: '',
+        },
         scales: {
           xAxes: [{
             ticks: {

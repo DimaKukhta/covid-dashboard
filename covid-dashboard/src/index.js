@@ -133,6 +133,10 @@ mapElem.addEventListener('click', ({ target }) => {
       setTimeout(() => {
         const countryName = popupContainer.querySelector('b').textContent;
         table.updateTableInfo(countryName, isTotal, isAbsolute);
+        countryNow = countryName;
+        myChart.removeData();
+        const filterBtn = filters.querySelector('.button-active').id;
+        myChart.addData(countryNow, getFilterPosition(filterBtn, true, true));
       }, 100);
     }
   }, 100);
