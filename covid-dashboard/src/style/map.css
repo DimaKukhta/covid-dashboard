@@ -69,7 +69,8 @@
 }
 
 .cases_col {
-    background-color: var(--color-text-red);
+    background-color :rgba(36, 146, 242, 0.42);
+    border: var(--color-text-blue) 2px solid;
 }
 
 .deaths_col {
