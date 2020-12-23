@@ -59,7 +59,7 @@
 }
 
 .list-countries--elem:hover {
-  background-color: var(--color-text-blue);
+  background-color: var(--color-text-lila);
   cursor: pointer;  
 }
 
