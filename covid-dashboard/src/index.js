@@ -105,7 +105,7 @@ filters.addEventListener('click', ({ target }) => {
 function resizeBlock({ target }) {
   target.parentElement.classList.toggle('full-screen');
   target.classList.toggle('btn-active');
-  document.body.width = `${parseFloat(window.getComputedStyle(document.body).width) - 10}px`;
+  window.dispatchEvent(new Event('resize'));
 }
 
 const arrayOfResizeBtns = Array.from(document.querySelectorAll('.resize-button'));
