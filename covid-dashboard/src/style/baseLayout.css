@@ -136,3 +136,22 @@ footer {
   height: 15px;
   margin: 4px;
 }
+
+@media (max-width: 768px) {
+  .container-table-chart {
+    flex-direction: column;
+    max-height: 345px;
+  }
+}
+
+@media (max-width: 690px) {
+  main {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+  }
+}

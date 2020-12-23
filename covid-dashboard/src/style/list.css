@@ -98,3 +98,23 @@
 .list-countries--flag {
   width: 25px;
 }
+
+@media (max-width: 768px) {
+  .list-input {
+    width: 94%;
+  }
+}
+
+@media (max-width: 690px) {
+  .container-updated-date {
+    display: none;
+  }
+
+  .total-amount {
+    font-size: 1.5rem;
+  }
+
+  .list {
+    max-height: 500px;
+  }
+}

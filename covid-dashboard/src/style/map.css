@@ -93,3 +93,9 @@
   width: calc(100% - 10px);
   height: calc(100% - 10px);
 }
+
+@media (max-width: 690px) {
+  .map {
+    height: 300px;
+  }
+}
