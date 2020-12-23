@@ -136,3 +136,16 @@ mapElem.addEventListener('click', ({ target }) => {
     }
   }, 100);
 });
+
+function calcCanvasWidth() {
+  const canvasElem = document.querySelector('#myChart');
+  const list1 = document.querySelector('#list');
+  const table1 = document.querySelector('#table');
+  const listWidth = window.getComputedStyle(list1).width;
+  const tableWidth = window.getComputedStyle(table1).width;
+  const bodyWidth = window.getComputedStyle(document.body).width;
+  canvasElem.style.width = `${bodyWidth - listWidth - tableWidth}px`;
+  console.log(listWidth, tableWidth, bodyWidth);
+}
+
+window.addEventListener('resize', calcCanvasWidth);
