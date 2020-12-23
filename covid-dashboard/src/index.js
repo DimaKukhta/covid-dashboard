@@ -149,9 +149,21 @@ function calcCanvasWidth() {
   const listWidth = parseFloat(window.getComputedStyle(list1).width);
   const tableWidth = parseFloat(window.getComputedStyle(table1).width);
   const bodyWidth = parseFloat(window.getComputedStyle(document.body).width);
+  const listHeight = parseFloat(window.getComputedStyle(list1).height);
+  const bodyHeight = parseFloat(window.getComputedStyle(document.body).height);
+  if (document.documentElement.clientWidth <= 768) {
+    const calcWidth = bodyWidth - listWidth - 60;
+    const calcHeight = bodyHeight - listHeight - 120;
+    canvasElem.style.width = `${calcWidth}px`;
+    canvasElem.style.height = `${calcHeight}px`;
+  }
 
-  const calcWidth = bodyWidth - listWidth - tableWidth - 60;
-  canvasElem.style.width = `${calcWidth}px`;
+  if (document.documentElement.clientWidth <= 690) {
+    canvasElem.style.height = `${150}px`;
+  } else {
+    const calcWidth = bodyWidth - listWidth - tableWidth - 60;
+    canvasElem.style.width = `${calcWidth}px`;
+  }
 }
 
 window.addEventListener('resize', calcCanvasWidth);
