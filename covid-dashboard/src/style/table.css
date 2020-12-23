@@ -22,14 +22,20 @@ th {
 }
 
 .table-info-cases--value {
+  min-width: 110px;
+
   color: var(--color-text-blue)
 }
 
 .table-info-deaths--value {
+  min-width: 110px;
+
   color: var(--color-text-red);
 }
 
 .table-info-recovered--value {
+  min-width: 110px;
+
   color: var(--color-text-green);
 }
 
