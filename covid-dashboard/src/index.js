@@ -21,6 +21,10 @@ list.renderIn(listBlock);
 
 // Map init
 let map = new Map('cases_col', 'red', 'red');
+
+// Chart init
+const myChart = new ChartCovid();
+
 // Table start
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
@@ -64,22 +68,23 @@ filters.addEventListener('click', ({ target }) => {
   if (target.id === 'cases') {
     map.removeCircles();
     map = new Map('cases_col', 'red', 'red', 'cases');
+    myChart.removeData();
+    myChart.addData('cases');
   }
   if (target.id === 'deaths') {
     map.removeCircles();
     map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
+    myChart.removeData();
+    myChart.addData('deaths');
   }
   if (target.id === 'recovered') {
     map.removeCircles();
     map = new Map('recovered_col', ' #2b912b6b', '#70a800', 'recovered');
+    myChart.removeData();
+    myChart.addData('recovered');
   }
 });
 // List end
-
-// Start Chart
-const chart = new ChartCovid();
-console.log('chart');
-// End Chart
 
 // Resize buttons
 

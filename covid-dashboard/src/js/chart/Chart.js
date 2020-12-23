@@ -2,23 +2,23 @@ import Chart from 'chart.js';
 import { getHistoricInfo } from '../api/getApiData';
 import historicInfo from '../mocks/chartMock';
 
-function getLabelsTest() {
+function getLabelsTest(context) {
   const value = [];
-  for (const key in historicInfo.cases) {
-    value.push(historicInfo.cases[key]);
+  for (const key in historicInfo[context]) {
+    value.push(historicInfo[context][key]);
   }
   const newValue = value.map((element) => `${element}`);
   console.log(newValue);
   return newValue;
 }
-function getDataTest() {
+function getDataTest(context) {
   const value = [];
-  for (const key in historicInfo.cases) {
+  for (const key in historicInfo[context]) {
     value.push(key);
   }
   return value;
 }
-
+/*
 async function getLabels() {
   const result = await getHistoricInfo('Global');
   const value = [];
@@ -37,6 +37,7 @@ function getData() {
     return value;
   });
 }
+*/
 export default class ChartCovid {
   constructor() {
     this.createChart();
@@ -49,19 +50,19 @@ export default class ChartCovid {
       type: 'line',
       // The data for our dataset
       data: {
-        labels: getDataTest(),
+        labels: getDataTest('cases'),
         datasets: [{
           label: 'Global',
           backgroundColor: 'rgb(230, 0, 0)',
           borderColor: 'rgb(230, 0, 0)',
-          data: getLabelsTest(),
+          data: getLabelsTest('cases'),
         }],
       },
 
       // Configuration options go here
       options: {
-          responsive: true,
-          maintainAspectRatio: false,
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           xAxes: [{
             ticks: {
@@ -75,12 +76,22 @@ export default class ChartCovid {
       },
     });
     this.chart = chart;
+  };
+  removeData() {
+    this.chart.data.datasets[0].data = [];
+    this.chart.data.labels = [];
+    this.chart.update();
+  };
+  addData(context) {
+    this.chart.data.labels = getDataTest(context);
+    this.chart.data.datasets[0].data = getLabelsTest(context)
+    this.chart.update()
   }
 }
 function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
+  chart.data.labels.pop();
+  chart.data.datasets.forEach((dataset) => {
+    dataset.data.pop();
+  });
+  chart.update();
 }
