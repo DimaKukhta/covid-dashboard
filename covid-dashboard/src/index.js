@@ -20,7 +20,7 @@ const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
 // Map init
-let map = new Map('cases_col', 'red', 'red');
+let map = new Map('cases_col', '#2492f283', '#2493f2');
 
 // Chart init
 const myChart = new ChartCovid();
@@ -72,10 +72,11 @@ filters.addEventListener('click', ({ target }) => {
   // map
   if (target.id === 'cases') {
     map.removeCircles();
-    map = new Map('cases_col', 'red', 'red', 'cases');
+    map = new Map('cases_col', '#2492f283', '#2493f2', 'cases');
     myChart.removeData();
     myChart.addData(countryNow, 'cases');
   }
+
   if (target.id === 'deaths') {
     map.removeCircles();
     map = new Map('deaths_col', '#0000006b', 'red', 'deaths');
