@@ -18,7 +18,7 @@ const listBlock = document.querySelector('.list');
 list.renderIn(listBlock);
 
 // Map init
-let map = new Map('cases_col', 'red', 'red');
+let map = new Map('cases_col', '#2492f283', '#2493f2');
 // Table start
 const tableBlock = document.querySelector('#table');
 const radioGroup = document.querySelector('.container-for-radio');
@@ -61,7 +61,7 @@ filters.addEventListener('click', ({ target }) => {
   // map
   if (target.id === 'cases') {
     map.removeCircles();
-    map = new Map('cases_col', 'red', 'red', 'cases');
+    map = new Map('cases_col', '#2492f283', '#2493f2', 'cases');
   }
   if (target.id === 'deaths') {
     map.removeCircles();
