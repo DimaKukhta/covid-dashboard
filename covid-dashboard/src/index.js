@@ -1,13 +1,13 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 // eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line import/no-named-as-default-member
 import getFilterPosition from './js/utils/getFilterPosition';
 import controlPanel from './js/controlPanel/controlPanel';
 import Map from './js/map/Map.js';
 import './style/style.css';
 import Table from './js/table/Table';
 import List from './js/list/List';
-// eslint-disable-next-line import/no-named-as-default-member
 import ChartCovid from './js/chart/Chart';
 
 // Control panel START

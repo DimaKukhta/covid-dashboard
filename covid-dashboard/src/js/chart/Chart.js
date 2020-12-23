@@ -1,23 +1,11 @@
 import Chart from 'chart.js';
 import { getHistoricInfo } from '../api/getApiData';
-import historicInfo from '../mocks/chartMock';
 
-function getLabelsTest(context) {
-  const value = [];
-  for (const key in historicInfo[context]) {
-    value.push(historicInfo[context][key]);
-  }
-  const newValue = value.map((element) => `${element}`);
-  console.log(newValue);
-  return newValue;
-}
-function getDataTest(context) {
-  const value = [];
-  for (const key in historicInfo[context]) {
-    value.push(key);
-  }
-  return value;
-}
+const redBgColor = 'rgba(230, 0, 0, 0.5)';
+const redBdColor = 'rgb(230, 0, 0)';
+const greenBgColor = 'rgba(112, 168, 0, 0.5)';
+const greenBdColor = 'rgba(112, 168, 0)';
+
 async function getLabels(country, context) {
   const result = await getHistoricInfo(country);
   const value = [];
@@ -34,17 +22,7 @@ async function getData(country, context) {
   }
   return value;
 }
-/*
-function getData() {
-  getHistoricInfo('Global').then((result) => {
-    const value = [];
-    for (const key in result.cases) {
-      value.push(result.cases[key]);
-    }
-    return value;
-  });
-}
-*/
+
 export default class ChartCovid {
   constructor() {
     this.createChart();
@@ -53,28 +31,31 @@ export default class ChartCovid {
   async createChart() {
     const ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
-      // The type of chart we want to create
       type: 'line',
-      // The data for our dataset
       data: {
         labels: await getLabels('Global', 'cases'),
         datasets: [{
           label: 'Global',
-          backgroundColor: 'rgba(230, 0, 0, 0.5)',
-          borderColor: 'rgb(230, 0, 0)',
+          backgroundColor: redBgColor,
+          borderColor: redBdColor,
           data: await getData('Global', 'cases'),
         }],
       },
 
-      // Configuration options go here
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Global',
+        },
         scales: {
           xAxes: [{
             ticks: {
-              // Include a dollar sign in the ticks
-              callback(value, index, values) {
+              callback() {
                 return null;
               },
             },
@@ -83,15 +64,25 @@ export default class ChartCovid {
       },
     });
     this.chart = chart;
-  };
+  }
+
   removeData() {
     this.chart.data.datasets[0].data = [];
     this.chart.data.labels = [];
     this.chart.update();
-  };
+  }
+
   async addData(counrty, context) {
+    if (context === 'recovered') {
+      this.chart.data.datasets[0].backgroundColor = greenBgColor;
+      this.chart.data.datasets[0].borderColor = greenBdColor;
+    } else {
+      this.chart.data.datasets[0].backgroundColor = redBgColor;
+      this.chart.data.datasets[0].borderColor = redBdColor;
+    }
+    this.chart.options.title.text = counrty;
     this.chart.data.labels = await getLabels(counrty, context);
-    this.chart.data.datasets[0].data = await getData(counrty, context)
-    this.chart.update()
+    this.chart.data.datasets[0].data = await getData(counrty, context);
+    this.chart.update();
   }
 }
