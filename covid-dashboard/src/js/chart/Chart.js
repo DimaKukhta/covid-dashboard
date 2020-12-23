@@ -51,7 +51,7 @@ export default class ChartCovid {
         },
         tooltips: {
           intersect: false,
-          label: '',
+          label: 'Label',
         },
         scales: {
           xAxes: [{
