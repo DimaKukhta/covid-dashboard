@@ -1,0 +1,73 @@
+@import './default.css';
+
+.control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.3rem 1rem;
+
+  font-size: 15px;
+
+}
+
+@media (max-width: 768px) { 
+  .control-panel {
+    font-size: 10px;
+  }
+}
+
+/* filters */
+.filters {
+  display: flex;
+
+}
+.container-for-radio {
+  display: flex;  
+  align-items: center;
+
+  column-gap: 10px;
+}
+
+.radio-period,
+.radio-numbers {
+  padding: 5px;
+
+  border: 1px solid;  
+}
+
+input:hover ~label {
+  cursor: pointer;
+}
+
+input:checked ~ label {
+  color: var(--color-highlight-white);
+}
+
+.button-filters {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+
+  color: var(--color-text-white);
+
+  background: var(--color-bg-block);
+  border: 1px solid var(--color-text-red);
+  opacity: 0.4;
+}
+
+.button:hover {
+cursor: pointer;
+}
+
+.button-active {
+  height: 2.5rem;
+
+  opacity: 1;
+}

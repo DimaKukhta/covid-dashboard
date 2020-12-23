@@ -1,0 +1,123 @@
+@import './default.css';
+
+/* cases and data */
+
+.container-total-amount {
+  display: inline;
+  padding: 5px;
+
+  color: var(--color-highlight-white);
+
+  background: var(--color-bg-block);
+}
+
+.container-total-amount p {
+  text-align: center;
+}
+
+.total-amount {
+  color: var(--color-text-blue);
+  font-size: 2rem;
+}
+
+.container-updated-date {
+  margin: 0.3rem;
+
+  text-align: center;
+
+  background: var(--color-bg-block);
+}
+
+.updated-date {
+  color: var(--color-highlight-white);
+  font-size: 1.2rem;
+}
+
+.list {
+  position: relative;
+
+  min-width: 250px;
+
+  height: 100%;
+
+  overflow-y: scroll;
+
+  font-size: 0.9rem;
+}
+
+.list.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
+.list-countries--elem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.list-countries--elem:hover {
+  background-color: var(--color-text-lila);
+  cursor: pointer;  
+}
+
+.list-countries--elem > :not(:first-child) {
+  margin-left: 10px;
+}
+
+.list-input {
+  width: 82%;
+  margin: 10px;
+  padding-left: 10px;
+
+  font-size: 1.2rem;
+}
+
+.color-blue {
+  color: var(--color-text-blue);
+}
+
+.color-red {
+  color: var(--color-text-red);
+}
+
+.color-green {
+  color: var(--color-text-green);
+}
+
+.list-countries--country {
+  width: min-content;
+}
+
+.list-countries--flag {
+  width: 25px;
+}
+
+@media (max-width: 768px) {
+  .list-input {
+    width: 94%;
+  }
+}
+
+@media (max-width: 690px) {
+  .container-updated-date {
+    display: none;
+  }
+
+  .total-amount {
+    font-size: 1.5rem;
+  }
+
+  .list {
+    max-height: 300px;
+  }
+  .list.full-screen {
+    max-height: none;
+  }
+}

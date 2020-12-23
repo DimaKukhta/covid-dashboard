@@ -1,0 +1,101 @@
+@import './default.css';
+
+.legend {
+    height: min-content;
+}
+
+.lagend_head {
+    width: min-content;
+}
+
+.leaflet-right {
+    margin-right: 0.75rem;
+}
+
+.circle_legend {
+    margin-left: 8px;
+    
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.circle_legend__cases {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    line-height: 0.2rem;
+}
+
+.circle_legend__cases {
+    opacity: 0;
+
+    transition: 1s;
+}
+
+.show_tex {
+    opacity: 0.8;
+}
+
+#circle_10_k{
+    width: 0.5rem;
+    height: 0.5rem;
+}
+
+#circle_100_k {
+    width: 1rem;
+    height: 1rem;
+}
+
+#circle_500_k {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+#circle_1000_k {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#circle_more_1000_k {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.recovered_col {
+    background-color: rgba(0, 128, 0, 0.301);
+    border: var(--color-text-green) 2px solid;
+}
+
+.cases_col {
+    background-color :rgba(36, 146, 242, 0.42);
+    border: var(--color-text-blue) 2px solid;
+}
+
+.deaths_col {
+    background-color: var(--color-deaths-map);
+    border: var(--color-text-red) 2px solid;
+}
+
+.map {
+  position: relative;
+
+  flex-grow: 6;
+}
+
+.map.full-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
+@media (max-width: 690px) {
+  .map {
+    height: 300px;
+  }
+}

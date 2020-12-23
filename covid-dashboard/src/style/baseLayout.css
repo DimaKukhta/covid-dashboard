@@ -1,0 +1,157 @@
+@import './default.css';
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  background: var(--color-bg-main);
+}
+
+.block {
+  margin: 0.3rem;
+
+  background: var(--color-bg-block);
+  border: solid 1px var(--color-text-white);
+}
+
+/* HEADER */
+header {
+  flex: 0 0 auto;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.resize-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  z-index: 500;
+
+  width: 17px;
+  height: 17px;
+
+  background-color: var(--color-text-white);
+  background-image: url(../assets/expand.svg);
+  background-size: cover;
+  border: 1px var(--color-text-white) solid;
+  border-collapse: collapse;
+}
+
+.resize-button.btn-active {
+  z-index: 2001;
+
+  background-image: url(../assets/exit-fullscreen.svg);
+}
+
+.resize-button:hover {
+  cursor: pointer;
+}
+
+
+/* MAIN */
+main {
+  position: relative;
+
+  display: flex;
+
+  height: 80vh;
+
+  max-height: calc(100vh - 165px);
+
+  background: var(--color-bg-main);
+}
+
+.container-totalCases-list-updateDate {
+  display: flex;
+  flex-basis: 280px;
+  flex-direction: column;
+  max-height: 100%;
+}
+
+.container-map-table-chart {
+
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 10;
+
+}
+
+
+.container-table-chart {
+
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 3;
+  max-height: 250px;
+}
+
+
+/* FOOTER */
+footer {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+
+  background: var(--color-bg-block);
+}
+
+.footer {
+  min-width: 44vw;
+}
+
+.footer-text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text > *{
+  padding-right: 5px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--color-text-white);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  opacity: 0.7;
+}
+
+.footer-image {
+  height: 15px;
+  margin: 4px;
+}
+
+@media (max-width: 768px) {
+  .container-table-chart {
+    flex-direction: column;
+    max-height: 345px;
+  }
+}
+
+@media (max-width: 690px) {
+  main {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+  }
+}
