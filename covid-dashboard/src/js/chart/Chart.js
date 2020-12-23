@@ -51,7 +51,7 @@ export default class ChartCovid {
         },
         tooltips: {
           intersect: false,
-          label: 'Label',
+          label: '',
         },
         scales: {
           xAxes: [{
@@ -73,7 +73,7 @@ export default class ChartCovid {
     this.chart.update();
   }
 
-  async addData(counrty, context) {
+  async addData(country, context) {
     if (context === 'recovered') {
       this.chart.data.datasets[0].backgroundColor = greenBgColor;
       this.chart.data.datasets[0].borderColor = greenBdColor;
@@ -84,9 +84,10 @@ export default class ChartCovid {
       this.chart.data.datasets[0].backgroundColor = blueBgColor;
       this.chart.data.datasets[0].borderColor = blueBdColor;
     }
-    this.chart.options.title.text = counrty;
-    this.chart.data.labels = await getLabels(counrty, context);
-    this.chart.data.datasets[0].data = await getData(counrty, context);
+    this.chart.options.title.text = country;
+    this.chart.data.datasets[0].label = country;
+    this.chart.data.labels = await getLabels(country, context);
+    this.chart.data.datasets[0].data = await getData(country, context);
     this.chart.update();
   }
 }
